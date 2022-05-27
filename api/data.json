@@ -5,6 +5,7 @@
             "Subtitle": "Introduction",
             "BackgroundImage": "http://www.roblox.com/asset/?id=72872196",
             "GridPlacement": "001",
+            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 1: https://youtube.com/watch?v=abcdefghij\n\n",
             "Content": [
                 {
                     "Type": "Exercise",
