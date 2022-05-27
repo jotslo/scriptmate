@@ -1,0 +1,47 @@
+{
+    "Categories": [
+        {
+            "Title": "Episode 1",
+            "Subtitle": "Introduction",
+            "BackgroundImage": "http://www.roblox.com/asset/?id=72872196",
+            "GridPlacement": "001",
+            "Content": [
+                {
+                    "Type": "Exercise",
+                    "Title": "Variable Declaration #1",
+                    "Description": "Declare a variable named 'myName' and assign it to your name.",
+                    "Hint": "You can write text with a string, which is wrapped in \"quotation marks\".",
+                    "Validator": "return typeof(myName) == 'string'",
+                    "ScriptValidator": "return true"
+                },
+                {
+                    "Type": "Exercise",
+                    "Title": "Variable Declaration #2",
+                    "Description": "Declare a variable named 'myNumber' and assign it to a number.",
+                    "Hint": "Numbers are not wrapped in quotation marks, as they are <b>not</b> strings.",
+                    "Validator": "return typeof(myName) == 'string'",
+                    "ScriptValidator": "return true"
+                },
+                {
+                    "Type": "Quiz",
+                    "Questions": [
+                        {
+                            "Question": "Which of these is not a valid data type in Luau?",
+                            "Answer": "Text",
+                            "False1": "String",
+                            "False2": "Number",
+                            "False3": "Boolean"
+                        },
+                        {
+                            "Question": "This is a test question?",
+                            "Answer": "True",
+                            "False1": "False1",
+                            "False2": "False2",
+                            "False3": "False3"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
