@@ -10,7 +10,7 @@
                 {
                     "Type": "Exercise",
                     "Title": "Variable Declaration #1",
-                    "Description": "In the script editor, declare a variable named <font face=\"Code\">myName</font> and assign it to your own name.\n\nAfterwards, run your code with the <b>Test Code</b> button below.\n\nIf you're unsure, press the <b>Reveal Hint</b> button.",
+                    "Description": "In the script editor, declare a variable named <font color=\"rgb(85,170,255)\">myName</font> and assign it to your own name.\n\nAfterwards, run your code with the <b>Test Code</b> button below.\n\nIf you're unsure, press the <b>Reveal Hint</b> button.\n\nMake sure you have opened the <b>Output</b> window, so you can see errors.",
                     "Hint": "You can write text with a string, which is wrapped in \"quotation marks\".",
                     "Validator": "return typeof(myName) == 'string'",
                     "ScriptValidator": "return true"
