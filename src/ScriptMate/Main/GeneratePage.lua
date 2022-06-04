@@ -153,11 +153,11 @@ local function generateQuiz(page)
 
 	scriptHandler.HideScript()
 	practiceView.Completed.Visible = score == 100
+	quizScore = 0
 
 	if score > 0 then
 		generateFinalScore(page, score)
 	else
-		quizScore = 0
 		module.DisplayQuestion(page, 1)
 	end
 
