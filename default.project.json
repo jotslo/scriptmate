@@ -1,0 +1,11 @@
+{
+  "name": "project",
+  "tree": {
+    "$className": "DataModel",
+    "Workspace": {
+      "$className": "Workspace",
+      "$ignoreUnknownInstances": true,
+      "$path": "src"
+    }
+  }
+}
