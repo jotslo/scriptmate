@@ -47,7 +47,7 @@ local function runTest(testScript, newSource)
 
 	if not success then
 		testSuccess = false
-		warn("ScriptMate - Exercise failed.")
+		warn("ScriptMate - Exercise failed.\n" .. response)
 	end
 
 	newTest:Destroy()
