@@ -37,7 +37,7 @@
                     "Description": "Declare a variable with any name and assign it to a <b>string</b>.\n\nThen, use the <font color=\"rgb(85,170,255)\">print</font> function to output the variable's value.",
                     "Hint": "After assigning your variable, you can call the <b>print</b> function by typing <b>print</b>, followed by round brackets containing the variable's name.",
                     "Validator": "local log = game:GetService('LogService'):GetLogHistory() log = log[#log].message print(log) for var, value in getfenv() do if typeof(value) == 'string' and typeof(log) == 'string' then if log:find(value) then return true end end end return false",
-                    "ScriptValidator": "local c = (code:gsub('%s', '')) return c:find('=') ~= nil and c:find('print(') ~= nil and c:find('print(\"') == nil and c:find(\"print('\") == nil and c:find('print([[') == nil"
+                    "ScriptValidator": "local c = (code:gsub('%s', '')) return c:find('=') ~= nil and c:find('print%(') ~= nil and c:find('print%(\"') == nil and c:find(\"print%('\") == nil and c:find('print%[%[') == nil"
                 },
                 {
                     "Type": "Exercise",
