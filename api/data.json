@@ -36,7 +36,7 @@
                     "Title": "Outputting Variables",
                     "Description": "Declare a variable with any name and assign it to a <b>string</b>.\n\nThen, use the <font color=\"rgb(85,170,255)\">print</font> function to output the variable's value.",
                     "Hint": "After assigning your variable, you can call the <b>print</b> function by typing <b>print</b>, followed by round brackets containing the variable's name.",
-                    "Validator": "local log = game:GetService('LogService'):GetLogHistory() log = log[#log].message print(log) for var, value in getfenv() do if typeof(value) == 'string' and typeof(log) == 'string' then if log:find(value) then return true end end end return false",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() log = log[#log].message print(log) for var, value in getfenv() do if typeof(value) == 'string' and typeof(log) == 'string' then if log:find(value) then return true end end end return false",
                     "ScriptValidator": "local c = (userCode:gsub('%s', '')) return c:find('=') ~= nil and c:find('print%(') ~= nil and c:find('print%(\"') == nil and c:find(\"print%('\") == nil and c:find('print%[%[') == nil"
                 },
                 {
@@ -44,7 +44,7 @@
                     "Title": "Basic Addition",
                     "Description": "It's Josh's birthday tomorrow! 🥳\n\nDeclare a variable named <font color=\"rgb(85,170,255)\">joshAge</font> and assign it to <b>19</b>.\n\nNext, use the <font color=\"rgb(85,170,255)\">print</font> function to output his <b>age tomorrow</b>.",
                     "Hint": "Josh will be 20 years old tomorrow. You can use the addition operator to add two numbers together.",
-                    "Validator": "if typeof(joshAge) ~= 'number' then return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find('20') then return true end return false",
+                    "Validator": "if typeof(joshAge) ~= 'number' then return false end wait() local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find('20') then return true end return false",
                     "ScriptValidator": "return userCode:find('19') ~= nil and userCode:find('+') ~= nil"
                 },
                 {
@@ -52,7 +52,7 @@
                     "Title": "Order of Operations",
                     "Description": "Come up with any expression, as complex as you would like, that outputs <b>100</b>.\n\n<b>Examples:</b>\n<font face=\"Code\">print(10 ^ 2)\nprint(9 * 9 + 9 * 2 + 1)\nprint((30 - 5) * 2 + 50)</font>\n\nBonus points if you use <b>order of operations</b> and <b>brackets</b>!",
                     "Hint": "You can complete this challenge however you like, it is simply designed to let you experiment. Even <font face=\"Code\">print(100)</font> will work!",
-                    "Validator": "local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find('100') then return true end return false",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find('100') then return true end return false",
                     "ScriptValidator": "return true"
                 },
                 {
