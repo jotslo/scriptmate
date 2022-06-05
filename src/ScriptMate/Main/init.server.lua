@@ -12,7 +12,7 @@ local scriptView = ui.UserView.ModScriptView
 local studio = settings().Studio
 local themeMap = require(script.ThemeMap)
 
-local debugMode = false
+local debugMode = true
 local windowState = false
 local handlingClose = false
 local mainWidget
