@@ -126,20 +126,20 @@
                     "Description": "Create an if statement that checks if 8 is <b>less than</b> 3.\n\nIf it is, output the string <b>'Success'</b>\n\nOtherwise, output the string <b>'Failure'</b>",
                     "Hint": "You should use an else block, which is an extension to the if statement. The else block runs when no conditions in the if statement are met.",
                     "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:lower():find('failure') then return true end return false",
-                    "ScriptValidator": "return userCode:find('<') ~= nil and userCode:find('8') ~= nil and userCode:find('3') ~= nil"
+                    "ScriptValidator": "return userCode:find('<') ~= nil and userCode:find('8') ~= nil and userCode:find('3') ~= nil and userCode:find('else') ~= nil"
                 },
                 {
                     "Type": "Exercise",
                     "Title": "Elseif Block",
-                    "Description": "Create an if statement with <b>at least</b> one elseif block, and one else block.\n\nYou must write the if statement so that code within <b>one of the elseif blocks</b> is executed.\n\nRemember blocks underneath will be ignored.",
-                    "Hint": "The if statement should return a falsy value, and one of the elseif blocks should return a truthy value.",
+                    "Description": "Create an if statement with <b>at least</b> one <b>elseif</b> block, and one <b>else</b> block.\n\nFeel free to try this challenge multiple times, to try out different formats.\n\nRemember blocks underneath the first block with a truthy condition will be ignored.",
+                    "Hint": "If any blocks within an if statement are truthy, the computer runs the code within its block and ignores the remaining blocks. Feel free to rewatch the tutorial if unsure.",
                     "Validator": "return true",
-                    "ScriptValidator": "local initCode = userCode:sub(1, (userCode:find('if'))) local conditions = userCode:gmatch('elseif([^t][^h][^e][^n]+)then') for condition in conditions do local testScript = Instance.new('ModuleScript') testScript.Source = initCode .. '\nreturn ' .. condition local response = require(testScript) testScript:Destroy() if response then return true end end return false"
+                    "ScriptValidator": "return userCode:find('if') ~= nil and userCode:find('else ') ~= nil and userCode:find('3') ~= nil and userCode:find('elseif') ~= nil"
                 },
                 {
                     "Type": "Exercise",
                     "Title": "Local Variables",
-                    "Description": "Declare a local variable named <font color=\"rgb(85,170,255)\">myVar</font> inside the scope of an if statement that executes.\n\nThe variable should be assigned to the number <b>13</b>\n\nIn the if statement's scope, output the variable's value.\n\nOutside the if statement's scope after running, output the variable's value again, where it should not have a value.",
+                    "Description": "Create an if statement that executes, and declare a <b>local</b> variable named <font color=\"rgb(85,170,255)\">myVar</font> inside of its scope.\n\nThe variable should be assigned to the number <b>13</b>\n\nIn the if statement's scope, output the variable's value.\n\nOutside the if statement's scope after running, output the variable's value again, where it should not have a value.",
                     "Hint": "Local variables can only be accessed inside of a scope. If you declare a variable inside the if statement, it will not have a value outside of it, and so should output nil.",
                     "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() if myVar then return false end if log[#log-1].message:lower():find('13') and log[#log].message:lower():find('nil') then return true end return false",
                     "ScriptValidator": "return userCode:find('myVar') and not userCode:find('print(\\'') and not userCode:find('print(\"')"
@@ -162,7 +162,7 @@
                             "False3": "Nothing, it is entirely optional"
                         },
                         {
-                            "Question": "What does this condition return? <font face=\"Code\">(3 == 3 or 4 &lt; 3) and true</font>",
+                            "Question": "What does this condition return?\n<font face=\"Code\">(3 == 3 or 4 &lt; 3) and true</font>",
                             "Answer": "true",
                             "False1": "false",
                             "False2": "nil",
@@ -173,7 +173,7 @@
                             "Answer": "When all other blocks in the if statement are falsy",
                             "False1": "After running the first code block in the if statement",
                             "False2": "Never",
-                            "False3": "After running an code within an elseif block"
+                            "False3": "After running the code within an elseif block"
                         },
                         {
                             "Question": "Why do we use tabs/spaces to indent code?",
