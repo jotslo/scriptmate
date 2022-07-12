@@ -223,14 +223,14 @@
                     "Description": "Using a <b>variable</b> and a <b>repeat loop</b>, write a script that outputs each value from <b>0</b> to <b>50</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.\n\n<font color=\"rgb(238,75,43)\">Warning: Make sure your repeat loop doesn't run for an infinite amount of time, or Roblox Studio will hang.</font>",
                     "Hint": "An example of this challenge is given in the tutorial, incrementing a variable from 1 to 5. You should assign your variable to 0, and increment it until it reaches 50.",
                     "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 50 do if not log[#log-i].message:find(50 - i) then return false end end return true",
-                    "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('while') ~= nil and count == 1"
+                    "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('repeat') ~= nil and count == 1"
                 },
                 {
                     "Type": "Exercise",
                     "Title": "Continue Keyword",
                     "Description": "Using any loop, output each value from <b>1</b> to <b>10</b>, but skip the number <b>5</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.",
                     "Hint": "You should use an if statement that checks the current value, and the continue keyword, which allows you to skip the current iteration of the loop. You can use the continue keyword inside any loop.",
-                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 4 do if not log[#log-i].message:find(10 - i) then return false end end for i = 6, 9 do if not log[#log-i].message:find(10 - i) then return false end end return true",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 4 do if not log[#log-i].message:find(10 - i) then return false end end for i = 6, 9 do if not log[#log-(i-1)].message:find(10 - i) then return false end end return true",
                     "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('continue') ~= nil and count == 1"
                 },
                 {
