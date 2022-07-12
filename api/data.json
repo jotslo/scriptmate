@@ -198,7 +198,7 @@
                     "Title": "For Loop #1",
                     "Description": "Using a <b>for loop</b>, write a script that outputs each value from <b>1</b> to <b>100</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.",
                     "Hint": "You can create a for loop ranging from 1 to 100. On each loop, the variable is incremented by the step value, which defaults to 1.",
-                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 99 do if not log[#log-i]:find(100 - i) then return false end end return true",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 99 do print(log[#log-i])--[[if not log[#log-i]:find(100 - i) then return false end]] end return true",
                     "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('for') ~= nil and count == 1"
                 },
                 {
