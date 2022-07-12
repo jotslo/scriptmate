@@ -134,7 +134,7 @@
                     "Description": "Create an if statement with <b>at least</b> one <b>elseif</b> block, and one <b>else</b> block.\n\nFeel free to try this challenge multiple times, to try out different formats.\n\nRemember blocks underneath the first block with a truthy condition will be ignored.",
                     "Hint": "If any blocks within an if statement are truthy, the computer runs the code within its block and ignores the remaining blocks. Feel free to rewatch the tutorial if unsure.",
                     "Validator": "return true",
-                    "ScriptValidator": "return userCode:find('if') ~= nil and userCode:find('else ') ~= nil and userCode:find('3') ~= nil and userCode:find('elseif') ~= nil"
+                    "ScriptValidator": "return userCode:find('if') ~= nil and userCode:find('else ') ~= nil and userCode:find('elseif') ~= nil"
                 },
                 {
                     "Type": "Exercise",
