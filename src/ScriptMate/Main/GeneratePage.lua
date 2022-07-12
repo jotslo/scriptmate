@@ -215,10 +215,12 @@ function module.SetupPage(localPlugin, identifier, handler)
 	
 	plugin = localPlugin
 	scriptHandler = handler
+
 	category = getCategory(identifier)
-	
 	categoryData = plugin:GetSetting(setting)
 		or generateSettings(setting, category)
+	
+	practiceView.MainLabel.Text = category.Subtitle
 	
 	local page = getFirstPage(category, categoryData)
 	updatePage(page)
