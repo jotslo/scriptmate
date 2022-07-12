@@ -3,7 +3,7 @@
         {
             "Title": "Episode 1",
             "Subtitle": "Introduction",
-            "BackgroundImage": "http://www.roblox.com/asset/?id=9831217083",
+            "BackgroundImage": "http://www.roblox.com/asset/?id=10204192311",
             "GridPlacement": "001",
             "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 1: https://youtube.com/watch?v=abcdefghij\n\n",
             "Content": [
@@ -100,7 +100,7 @@
         {
             "Title": "Episode 2",
             "Subtitle": "If Statements",
-            "BackgroundImage": "http://www.roblox.com/asset/?id=9831217083",
+            "BackgroundImage": "http://www.roblox.com/asset/?id=10204193205",
             "GridPlacement": "002",
             "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 2: https://youtube.com/watch?v=abcdefghij\n\n",
             "Content": [
@@ -189,7 +189,7 @@
         {
             "Title": "Episode 3",
             "Subtitle": "Loops",
-            "BackgroundImage": "http://www.roblox.com/asset/?id=9831217083",
+            "BackgroundImage": "http://www.roblox.com/asset/?id=10204193903",
             "GridPlacement": "003",
             "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 2: https://youtube.com/watch?v=abcdefghij\n\n",
             "Content": [
@@ -293,6 +293,87 @@
                             "False1": "break",
                             "False2": "skip",
                             "False3": "cancel"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Title": "Episode 4",
+            "Subtitle": "Tables",
+            "BackgroundImage": "http://www.roblox.com/asset/?id=10204197516",
+            "GridPlacement": "004",
+            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 1: https://youtube.com/watch?v=abcdefghij\n\n",
+            "Content": [
+                {
+                    "Type": "Exercise",
+                    "Title": "Creating a Table",
+                    "Description": "Declare a variable named <font color=\"rgb(85,170,255)\">myTable</font> and assign it to an <b>empty table</b>.",
+                    "Hint": "Tables are created with curly brackets.",
+                    "Validator": "return typeof(myTable) == 'table' and next(myTable) == nil",
+                    "ScriptValidator": "return true"
+                },
+                {
+                    "Type": "Exercise",
+                    "Title": "Creating a List-style Table",
+                    "Description": "Declare a variable named <font color=\"rgb(85,170,255)\">myTable</font> and assign it to a <b>table</b>.\n\nThe table should be formatted as a list, meaning you must <b>not</b> specify the indexes.\n\nInsert the following values to the table, in this order: <b>'s'</b>, <b>7</b>, <b>true</b>, <b>false</b>",
+                    "Hint": "Tables can be created in a list-style format, where the indexes are not specified. This is done within the curly brackets.",
+                    "Validator": "return typeof(myTable) == 'table' and myTable[1] == 's' and myTable[2] == 7 and myTable[3] == true and myTable[4] == false",
+                    "ScriptValidator": "return true"
+                },
+                {
+                    "Type": "Exercise",
+                    "Title": "Creating a List-style Table #2",
+                    "Description": "Declare a variable named <font color=\"rgb(85,170,255)\">myTable</font> and assign it to a <b>table</b>.\n\nThe table should be formatted as a list, meaning you must <b>not</b> specify the indexes.\n\nInsert any values into the table.\n\nAfterwards, output the <b>length</b> of the table.",
+                    "Hint": "The # operator can determine the length of a table.",
+                    "Validator": "wait() if not typeof(myTable) == 'table' then return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:lower():find(#myTable) then return true end return false",
+                    "ScriptValidator": "return true"
+                },
+                {
+                    "Type": "Exercise",
+                    "Title": "Creating a Dictionary-style Table",
+                    "Description": "Declare a variable named <font color=\"rgb(85,170,255)\">myTable</font> and assign it to a <b>table</b>.\n\nAdd a ............",
+                    "Hint": "The # operator can determine the length of a table.",
+                    "Validator": "wait() if not typeof(myTable) == 'table' then return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:lower():find(#myTable) then return true end return false",
+                    "ScriptValidator": "return true"
+                },
+                {
+                    "Type": "Quiz",
+                    "Questions": [
+                        {
+                            "Question": "Which of these is <b>not</b> a valid data type in Luau?",
+                            "Answer": "Text",
+                            "False1": "String",
+                            "False2": "Number",
+                            "False3": "Boolean"
+                        },
+                        {
+                            "Question": "Which of these variable names is written in camel case?",
+                            "Answer": "variableName",
+                            "False1": "VariableName",
+                            "False2": "variable_name",
+                            "False3": "VARIABLE_NAME"
+                        },
+                        {
+                            "Question": "Which operator concatenates two strings?",
+                            "Answer": "..",
+                            "False1": "&",
+                            "False2": "+",
+                            "False3": "-"
+                        },
+                        {
+                            "Question": "What happens if you declare a variable <i>after</i> outputting it?",
+                            "Answer": "The output window shows 'nil'",
+                            "False1": "The script crashes",
+                            "False2": "The output window shows the variable's value",
+                            "False3": "The output window shows 'undefined'"
+                        },
+                        {
+                            "Question": "Which of these scripts will cause an error?",
+                            "Answer": "<font face=\"Code\">1var = true</font>",
+                            "False1": "<font face=\"Code\">var3 = [[false]]</font>",
+                            "False2": "<font face=\"Code\">MY_VAR = 'yes'</font>",
+                            "False3": "<font face=\"Code\">v4r = 9.6</font>"
                         }
                     ]
                 }
