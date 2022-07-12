@@ -198,31 +198,31 @@
                     "Title": "For Loop #1",
                     "Description": "Using a <b>for loop</b>, write a script that outputs each value from <b>1</b> to <b>100</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.",
                     "Hint": "You can create a for loop ranging from 1 to 100. On each loop, the variable is incremented by the step value, which defaults to 1.",
-                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 99 do if log[#log-i] ~= 100 - i then return false end end return true",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 99 do if not log[#log-i]:find(100 - i) then return false end end return true",
                     "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('for') ~= nil and count == 1"
                 },
                 {
                     "Type": "Exercise",
                     "Title": "For Loop #2",
-                    "Description": "Using a <b>for loop</b>, write a script that outputs each value from <b>20 to </b>-20, with a step of <b>-2</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.",
+                    "Description": "Using a <b>for loop</b>, write a script that outputs each value from <b>20</b> to <b>-20</b>, with a step of <b>-2</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.",
                     "Hint": "You can create a for loop ranging from 20 to -20, with a third value representing the step of -2. On each loop, the variable is incremented by the step value, so the output should look like 20, 18, 16 ... -16, -18, -20",
-                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 20 do if log[#log-i] ~= -20 + i * 2 then return false end end return true",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 20 do if not log[#log-i]:find(-20 + i * 2) then return false end end return true",
                     "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('for') ~= nil and count == 1"
                 },
                 {
                     "Type": "Exercise",
                     "Title": "While Loop",
-                    "Description": "Using a <b>variable</b> and a <b>while loop</b>, write a script that outputs each value from <b>1</b> to <b>100</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.\n\n<font color=\"rgb(255,0,0)\">Warning: Make sure your while loop doesn't run for an infinite amount of time, or Roblox Studio will hang.</font>",
+                    "Description": "Using a <b>variable</b> and a <b>while loop</b>, write a script that outputs each value from <b>1</b> to <b>100</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.\n\n<font color=\"rgb(238,75,43)\">Warning: Make sure your while loop doesn't run for an infinite amount of time, or Roblox Studio will hang.</font>",
                     "Hint": "An example of this challenge is given in the tutorial, incrementing a variable from 1 to 5. You should increment your variable until it reaches 100.",
-                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 99 do if log[#log-i] ~= 100 - i then return false end end return true",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 99 do if not log[#log-i]:find(100 - i) then return false end end return true",
                     "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('while') ~= nil and count == 1"
                 },
                 {
                     "Type": "Exercise",
                     "Title": "Repeat Loop",
-                    "Description": "Using a <b>variable</b> and a <b>repeat loop</b>, write a script that outputs each value from <b>0</b> to <b>50</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.\n\n<font color=\"rgb(255,0,0)\">Warning: Make sure your while loop doesn't run for an infinite amount of time, or Roblox Studio will hang.</font>",
+                    "Description": "Using a <b>variable</b> and a <b>repeat loop</b>, write a script that outputs each value from <b>0</b> to <b>50</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.\n\n<font color=\"rgb(238,75,43)\">Warning: Make sure your repeat loop doesn't run for an infinite amount of time, or Roblox Studio will hang.</font>",
                     "Hint": "An example of this challenge is given in the tutorial, incrementing a variable from 1 to 5. You should assign your variable to 0, and increment it until it reaches 50.",
-                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 50 do if log[#log-i] ~= 50 - i then return false end end return true",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 50 do if not log[#log-i]:find(50 - i) then return false end end return true",
                     "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('while') ~= nil and count == 1"
                 },
                 {
@@ -230,7 +230,7 @@
                     "Title": "Continue Keyword",
                     "Description": "Using any loop, output each value from <b>1</b> to <b>10</b>, but skip the number <b>5</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.",
                     "Hint": "You should use an if statement that checks the current value, and the continue keyword, which allows you to skip the current iteration of the loop. You can use the continue keyword inside any loop.",
-                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 4 do if log[#log-i] ~= 10 - i then return false end end for i = 6, 9 do if log[#log-(i-1)] ~= 10 - i then return false end end return true",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 4 do if not log[#log-i]:find(10 - i) then return false end end for i = 6, 9 do if not log[#log-i]:find(10 - i) then return false end end return true",
                     "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('continue') ~= nil and count == 1"
                 },
                 {
@@ -238,7 +238,7 @@
                     "Title": "Break Keyword",
                     "Description": "Write a <b>for loop</b> that outputs each value from <b>1</b> to <b>10</b>, but stop the for loop after the script has outputted <b>5</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.",
                     "Hint": "You should use an if statement that checks the current value, and the break keyword, which allows you to break the loop and skip to the code underneath the block. You can use the break keyword inside any loop.",
-                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 4 do if log[#log-i] ~= 5 - i then return false end end return true",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 4 do if not log[#log-i]:find(5 - i) then return false end end return true",
                     "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('break') ~= nil and userCode:find('10') ~= nil and count == 1"
                 },
                 {
