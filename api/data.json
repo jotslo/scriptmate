@@ -445,7 +445,7 @@
                 {
                     "Type": "Exercise",
                     "Title": "Libraries",
-                    "Description": "Declare a table named <font color=\"rgb(85,170,255)\">myLib</font>, that contains a function named <font color=\"rgb(85,170,255)\">add</font>.\n\nThe function should take two numbers as arguments, and return the sum of the two numbers.\n\nFinally, call the function passing values <b>6</b> and <b>7</b> as arguments, and then output the result.",
+                    "Description": "Declare a table named <font color=\"rgb(85,170,255)\">myLib</font>, that contains a function named <font color=\"rgb(85,170,255)\">add</font>.\n\nThe function should take two numbers as arguments, add them together and return the result.\n\nFinally, call the function passing values <b>6</b> and <b>7</b> as arguments, and then output the result.",
                     "Hint": "You can add a function as a value to a table just like any other data type. You can then call the function by using the table name and the function name, separated by a period. The expected output is <b>13</b>.",
                     "Validator": "wait() if not (typeof(myLib) == 'table' and typeof(myLib.add) == 'function') then return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:lower():find('13') and myLib.add(1,2) == 3 then return true end return false",
                     "ScriptValidator": "return true"
