@@ -1,14 +1,24 @@
-local initCode = userCode:sub(1, (userCode:find('if')))
-local conditions = userCode:gmatch('elseif([^t][^h][^e][^n]+)then')
+wait()
+local log = game:GetService('LogService'):GetLogHistory()
 
-for condition in conditions do
-    local testScript = Instance.new('ModuleScript')
-    testScript.Source = initCode .. '\nreturn ' .. condition
-    local response = require(testScript)
-    testScript:Destroy()
-    if response then
-        return true
+local len = 0
+for i, v in myTable do
+    len += 1
+end
+
+local function find(msg)
+    for i, v in myTable do
+        if msg:find(i) and msg:find(v) then
+            return true
+        end
+    end
+    return false
+end
+
+for i = 0, len - 1 do
+    if not find(log[#log-i].message) then
+        return false
     end
 end
 
-return false
+return true
