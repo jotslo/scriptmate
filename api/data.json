@@ -333,7 +333,7 @@
                     "Type": "Exercise",
                     "Title": "Dictionary-style Table",
                     "Description": "Declare a variable named <font color=\"rgb(85,170,255)\">ages</font> and assign it to a <b>table</b>.\n\nThe table must store the ages of the following people: <b>'John'</b> is <b>27</b>, <b>'Jane'</b> is <b>25</b>, <b>'Bob'</b> is <b>32</b>.\n\nThe names (strings) must be used as the indexes, and the ages (numbers) as the values.\n\nAfter declaring the table, output the age of <b>'John'</b>, by referring to the table.",
-                    "Hint": "The table should be formatted like: {'Adam': 25, ...}. Afterwards, you must refer to the table and use the index to retrieve the value.",
+                    "Hint": "The table should be formatted like: {['Adam'] = 25, ...}. Afterwards, you must refer to the table and use the index to retrieve the value.",
                     "Validator": "wait() if not typeof(ages) == 'table' then return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:lower():find('27') and ages['John'] == 27 and ages['Jane'] == 25 and ages['Bob'] == 32 then return true end return false",
                     "ScriptValidator": "return not userCode:find('print(\\'') and not userCode:find('print(\"') and not userCode:find('print(27')"
                 },
@@ -350,7 +350,7 @@
                     "Title": "Generic For Loop #2",
                     "Description": "Declare a variable named <font color=\"rgb(85,170,255)\">myTable</font> and assign it to a <b>table</b>.\n\nThe table should be formatted as a dictionary, meaning you <b>must</b> specify the indexes.\n\nInsert any indexes and values into the table. The table must contain <b>at least 2</b> sets of indexes & values.\n\nAfterwards, use a <b>for loop</b> to get each index <b>and</b> value in the table.\n\nOn each loop, concatenate the index and value into a string, and output the string.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.",
                     "Hint": "You should use the generic for loop. For each value, concatenate both the index and the value using the '..' operator, and output the string.",
-                    "Validator": "wait() if (not typeof(myTable) == 'table') then return false end local log = game:GetService('LogService'):GetLogHistory() local len = 0 for i, v in myTable do len += 1 end local function find(msg) for i, v in myTable do if msg:find(i) and msg:find(v) then return true end end return false end for i = 0, len - 1 do if not find(log[#log-i].message) then return false end end return true",
+                    "Validator": "wait() if (not typeof(myTable) == 'table') then return false end local log = game:GetService('LogService'):GetLogHistory() local len = 0 for i, v in myTable do len += 1 end local function find(msg) for i, v in myTable do if msg:find(tostring(i)) and msg:find(tostring(v)) then return true end end return false end for i = 0, len - 1 do if not find(log[#log-i].message) then return false end end return true",
                     "ScriptValidator": "local _, count = userCode:gsub('print', '') return count == 1 and not userCode:find('print(\\'') and not userCode:find('print(\"')"
                 },
                 {
