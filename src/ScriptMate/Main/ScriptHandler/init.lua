@@ -110,9 +110,11 @@ function module.SaveScript(isForced, newCatData)
 	if currentTime - lastSave >= autoSaveSeconds or isForced then
 		lastSave = currentTime
 		
-		if lastSource ~= scriptEnv.Source and scriptEnv.Source then
+		if lastSource ~= scriptEnv.Source then
 			lastSource = scriptEnv.Source
-			categoryData.Sources[pageNumber] = lastSource
+			if lastSource then
+				categoryData.Sources[pageNumber] = lastSource
+			end
 			updateData:Fire(categoryData)
 		end
 	end
