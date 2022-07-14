@@ -526,7 +526,7 @@
                 {
                     "Type": "Exercise",
                     "Title": "Methods #2",
-                    "Description": "Use the <b>GetChildren()</b>method to get a table containing each child in the <b>Workspace</b>.\n\nNext, iterate through the table, and output the <b>Name</b> of each child.",
+                    "Description": "Use the <b>GetChildren()</b> method to get a table containing each child in the <b>Workspace</b>.\n\nNext, iterate through the table, and output the <b>Name</b> of each child.",
                     "Hint": "The <b>GetChildren()</b> method returns a table of all the children in an instance. You can iterate through the table using a for loop, and output the child's name using the .Name property of each value in the table.",
                     "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() local len = 0 for i, v in workspace:GetChildren() do len += 1 end local function find(msg) for i, v in workspace:GetChildren() do if msg:find(v.Name) then return true end end return false end for i = 0, len - 1 do if not find(log[#log-i].message) then return false end end return true",
                     "ScriptValidator": "return true"
@@ -536,7 +536,7 @@
                     "Title": "Events",
                     "Description": "All instances have an event called <b>ChildAdded</b>, which fires when a child is added to the instance.\n\nWhen the event is fired, <b>one argument</b> is passed, which refers to the new instance that has been added.\n\nIn the script editor, refer to the <b>Workspace</b> instance and listen for the <b>ChildAdded</b> event.\n\nNext, output the <b>Name</b> of the child that was added.\n\nWhen you click the 'Test Code' button, a new part will be automatically added to the <b>Workspace</b>.\n\nYou will pass this challenge if your script outputs the name of the new part.",
                     "Hint": "Refer to the Engine API for an example of ChildAdded being used. Your parameter can be named anything, and you must them use the .Name property to get the name of the child.",
-                    "Validator": "local name = 'NewPart' .. tostring(math.random(1000, 9999)) local part = Instance.new('Part') part.Name = name part.Parent = workspace wait() local log = game:GetService('LogService'):GetLogHistory() if log[#log-i].message:find(name) then return true end return false",
+                    "Validator": "local name = 'NewPart' .. tostring(math.random(1000, 9999)) local part = Instance.new('Part') part.Name = name part.Parent = workspace wait() local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find(name) then return true end return false",
                     "ScriptValidator": "return true"
                 },
                 {
