@@ -601,7 +601,7 @@
                     "Title": "Creating a ModuleScript",
                     "Description": "Manually add a ModuleScript to the <b>ReplicatedStorage</b>, and name it <b>MyModule</b>.\n\nNext, remove the template code, and simply have the ModuleScript return a <b>string</b> of your choice.\n\nFinally, go back to the ScriptMateEnv script, <b>require</b> the ModuleScript, and output the returned string.",
                     "Hint": "You can require a ModuleScript with the <b>require</b> function, with the ModuleScript's location as the argument. The function will then return your ModuleScript's string, which you can assign to a variable, or output directly.",
-                    "Validator": "wait() local mod = game.ReplicatedStorage:FindFirstChild('MyModule') if not mod then return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find(require(mod)) then mod.Source = '' return true end return false",
+                    "Validator": "wait() local mod = game.ReplicatedStorage:FindFirstChild('MyModule') if not mod then return false end local newMod = mod:Clone() local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find(require(newMod)) then mod.Source = '' newMod:Destroy() return true end newMod:Destroy() return false",
                     "ScriptValidator": "return userCode:find('require') ~= nil and not userCode:find('print(\"') and not userCode:find('print(\\'')"
                 },
                 {
@@ -609,7 +609,7 @@
                     "Title": "Returning a Table",
                     "Description": "In the <b>MyModule</b> ModuleScript, return a table.\n\nThe table must be in list-form and contain the names of the game's admins, which are 'Josh', 'Bob', and 'Joe'.\n\nNext, go back to the ScriptMateEnv script, and <b>require</b> the ModuleScript.\n\nFinally, output the <b>2nd name</b> in the returned table.",
                     "Hint": "You can return a table like this: <b>return {}</b>. After requiring the ModuleScript, the function will return the table. You can then use it as you would any other table.",
-                    "Validator": "wait() local mod = game.ReplicatedStorage:FindFirstChild('MyModule') if not mod then return false end local tbl = require(mod) if not typeof(tbl) == 'table' then return false end if #tbl ~= 3 or tbl[1] ~= 'Josh' or tbl[2] ~= 'Bob' or tbl[3] ~= 'Joe' then return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find(tbl[2]) then mod.Source = '' return true end return false",
+                    "Validator": "wait() local mod = game.ReplicatedStorage:FindFirstChild('MyModule') if not mod then return false end local newMod = mod:Clone() local tbl = require(newMod) if not typeof(tbl) == 'table' then newMod:Destroy() return false end if #tbl ~= 3 or tbl[1] ~= 'Josh' or tbl[2] ~= 'Bob' or tbl[3] ~= 'Joe' then newMod:Destroy() return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find(tbl[2]) then mod.Source = '' newMod:Destroy() return true end newMod:Destroy() return false",
                     "ScriptValidator": "return not userCode:find('Bob')"
                 },
                 {
@@ -617,8 +617,8 @@
                     "Title": "Returning a Function",
                     "Description": "In the <b>MyModule</b> ModuleScript, return a function.\n\nThe function must take a string as an argument, concatenate <b>' :)'</b> (a space and a smiley) onto the end of the string, and then return it.\n\nNext, go back to the ScriptMateEnv script, and <b>require</b> the ModuleScript.\n\nFinally, call the function with any string, and output the returned string.",
                     "Hint": "The <b>require</b> function will return a function datatype. You can then assign it to a variable, and call it as you would any other function assigned to a variable.",
-                    "Validator": "wait() local mod = game.ReplicatedStorage:FindFirstChild('MyModule') if not mod then return false end local func = require(mod) if not typeof(func) == 'function' then return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find(':)') then mod.Source = '' return true end return false",
-                    "ScriptValidator": "local mod = game.ReplicatedStorage:FindFirstChild('MyModule') if not mod then return false end local func = require(mod) if not typeof(func) == 'function' then return false end return func('Hello') == 'Hello :)'"
+                    "Validator": "wait() local mod = game.ReplicatedStorage:FindFirstChild('MyModule') if not mod then return false end local newMod = mod:Clone() local func = require(newMod) if not typeof(func) == 'function' then newMod:Destroy() return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find(':)') then mod.Source = '' newMod:Destroy() return true end newMod:Destroy() return false",
+                    "ScriptValidator": "local mod = game.ReplicatedStorage:FindFirstChild('MyModule') if not mod then return false end local newMod = mod:Clone() local func = require(newMod) if not typeof(func) == 'function' then newMod:Destroy() return false end newMod:Destroy() return func('Hello') == 'Hello :)'"
                 },
                 {
                     "Type": "Exercise",
