@@ -617,7 +617,7 @@
                     "Title": "Returning a Function",
                     "Description": "In the <b>MyModule</b> ModuleScript, return a function.\n\nThe function must take a string as an argument, concatenate <b>' :)'</b> (a space and a smiley) onto the end of the string, and then return it.\n\nNext, go back to the ScriptMateEnv script, and <b>require</b> the ModuleScript.\n\nFinally, call the function with any string, and output the returned string.",
                     "Hint": "The <b>require</b> function will return a function datatype. You can then assign it to a variable, and call it as you would any other function assigned to a variable.",
-                    "Validator": "wait() local oldMod = game.ReplicatedStorage:FindFirstChild('MyModule') local mod = oldMod:Clone() mod.Parent = oldMod.Parent oldMod:Destroy() if not mod then return false end local func = require(mod) if not typeof(func) == 'function' then return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find(':)') then mod.Source = '' return true end return false",
+                    "Validator": "wait() local mod = game.ReplicatedStorage:FindFirstChild('MyModule') if not mod then return false end local func = require(mod) if not typeof(func) == 'function' then return false end local log = game:GetService('LogService'):GetLogHistory() if log[#log].message:find(':)') then mod.Source = '' return true end return false",
                     "ScriptValidator": "local mod = game.ReplicatedStorage:FindFirstChild('MyModule') if not mod then return false end local func = require(mod) if not typeof(func) == 'function' then return false end return func('Hello') == 'Hello :)'"
                 },
                 {
