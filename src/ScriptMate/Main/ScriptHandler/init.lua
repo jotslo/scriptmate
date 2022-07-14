@@ -1,10 +1,10 @@
 local module = {}
 
 local httpService = game:GetService("HttpService")
+local sourceHeader = require(script.SourceHeader)
 
 local execTest = script.ExecTest
 local preExecTest = script.PreExecTest
-
 local updateData = script.Parent.UpdateData
 
 local categoryData
@@ -35,6 +35,7 @@ end
 local function runTest(testScript, newSource)
 	local testSuccess = true
 	local newTest = testScript:Clone()
+
 	newTest.Name = "ScriptMateEnv"
 	newTest.Source ..= newSource .. "\nend"
 
@@ -55,11 +56,14 @@ local function runTest(testScript, newSource)
 end
 
 function module.TestCode(page)
+	-- fixes annoying behaviour causing by modulescript caching
+	local fixedSource = sourceHeader .. " " .. scriptEnv.Source
+
 	if not runTest(preExecTest, page.ScriptValidator) then
 		return false
 	end
 
-	if not runTest(execTest, scriptEnv.Source .. " " .. page.Validator) then
+	if not runTest(execTest, fixedSource .. " " .. page.Validator) then
 		return false
 	end
 

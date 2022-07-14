@@ -142,7 +142,7 @@
                     "Description": "Create an if statement that executes, and declare a <b>local</b> variable named <font color=\"rgb(85,170,255)\">myVar</font> inside of its scope.\n\nThe variable should be assigned to the number <b>13</b>\n\nIn the if statement's scope, output the variable's value.\n\nOutside the if statement's scope after running, output the variable's value again, where it should not have a value.",
                     "Hint": "Local variables can only be accessed inside of a scope. If you declare a variable inside the if statement, it will not have a value outside of it, and so should output nil.",
                     "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() if myVar then return false end if log[#log-1].message:lower():find('13') and log[#log].message:lower():find('nil') then return true end return false",
-                    "ScriptValidator": "return userCode:find('myVar') and not userCode:find('print(\\'') and not userCode:find('print(\"')"
+                    "ScriptValidator": "return userCode:find('myVar') ~= nil and not userCode:find('print(\\'') and not userCode:find('print(\"')"
                 },
                 {
                     "Type": "Quiz",
@@ -247,7 +247,7 @@
                     "Description": "Declare a <b>local</b> variable named <font color=\"rgb(85,170,255)\">myNum</font> inside a <b>do block</b>.\n\nThe variable should be assigned to the number <b>26</b>\n\nIn the do block's scope, output the variable's value.\n\nOutside the do blocks scope after running, output the variable's value again, where it should not have a value.",
                     "Hint": "Local variables can only be accessed inside of a scope. If you declare a variable inside the do block, it will not have a value outside of it, and so should output nil.",
                     "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() if myNum then return false end if log[#log-1].message:lower():find('26') and log[#log].message:lower():find('nil') then return true end return false",
-                    "ScriptValidator": "return userCode:find('myNum') and not userCode:find('print(\\'') and not userCode:find('print(\"')"
+                    "ScriptValidator": "return userCode:find('myNum') ~= nil and not userCode:find('print(\\'') and not userCode:find('print(\"')"
                 },
                 {
                     "Type": "Quiz",
@@ -504,7 +504,7 @@
                     "Title": "Properties",
                     "Description": "Manually add a new <b>Part</b> to the <b>Workspace</b>, and name it <b>MyPart</b>.\n\nIn the script editor, write a script that changes the part's name to <b>NamedPart</b>.",
                     "Hint": "You can reference the part by navigating to <b>game.Workspace.MyPart</b>. Re-assign the .Name property just as you would an index in a table.",
-                    "Validator": "return workspace:FindFirstChild('NamedPart')",
+                    "Validator": "return workspace:FindFirstChild('NamedPart') ~= nil",
                     "ScriptValidator": "return not workspace:FindFirstChild('NamedPart')"
                 },
                 {
@@ -521,7 +521,7 @@
                     "Description": "In the script editor, refer to the <b>NamedPart</b> in the <b>Workspace</b>.\n\nNext, call the <b>Destroy</b> method, to destroy the part.",
                     "Hint": "After referring to the part, use the :Destroy() method to destroy it. Refer to the tutorial if you're unsure.",
                     "Validator": "return not workspace:FindFirstChild('NamedPart')",
-                    "ScriptValidator": "return workspace:FindFirstChild('NamedPart')"
+                    "ScriptValidator": "return workspace:FindFirstChild('NamedPart') ~= nil"
                 },
                 {
                     "Type": "Exercise",
