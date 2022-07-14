@@ -1,6 +1,8 @@
+local runService = game:GetService("RunService")
+local httpService = game:GetService("HttpService")
+
 local pluginTitle = "ScriptMate"
 
-local httpService = game:GetService("HttpService")
 local toolbar = plugin:CreateToolbar(pluginTitle)
 local button = toolbar:CreateButton(pluginTitle,
 	"Practice skills you've learned from jotslo's tutorial series with a range of challenges and exercises.",
@@ -59,28 +61,37 @@ local function showSidebar()
 	return widget
 end
 
-button.Click:Connect(function()
-	windowState = not windowState
-	button:SetActive(windowState)
-
-	if windowState then
-		mainWidget = showSidebar()
-	else
-		mainWidget = modifyExistingSidebar(false)
+if runService:IsEdit() then
+	-- if studio is in edit mode
+	button.Click:Connect(function()
+		windowState = not windowState
+		button:SetActive(windowState)
+	
+		if windowState then
+			mainWidget = showSidebar()
+		else
+			mainWidget = modifyExistingSidebar(false)
+		end
+		
+		if not handlingClose then
+			handlingClose = true
+			mainWidget:GetPropertyChangedSignal("Enabled")
+				:Connect(updateWindow)
+		end
+	end)
+	
+	if debugMode then
+		plugin:SetSetting("scriptmate001", nil)
 	end
 	
-	if not handlingClose then
-		handlingClose = true
-		mainWidget:GetPropertyChangedSignal("Enabled")
-			:Connect(updateWindow)
-	end
-end)
+	studio.ThemeChanged:Connect(updateTheme)
+	button:SetActive(windowState)
+	require(script.ButtonHandler)(plugin)
+	updateTheme()
 
-if debugMode then
-	plugin:SetSetting("scriptmate001", nil)
+else
+	-- if studio is in test mode, output error message
+	button.Click:Connect(function()
+		warn("ScriptMate can only be used in edit mode.")
+	end)
 end
-
-studio.ThemeChanged:Connect(updateTheme)
-button:SetActive(windowState)
-require(script.ButtonHandler)(plugin)
-updateTheme()
