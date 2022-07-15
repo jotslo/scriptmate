@@ -1,4 +1,1 @@
-if userCode:find('require') ~= nil and not userCode:find('print(\"') and not userCode:find('print(\'') then
-    return 'local newRequire = require local function require(moduleScript) return newRequire:Clone()' .. userCode
-end
-return false
+local remote = game.ReplicatedStorage:FindFirstChild('RemoteFunction')if not remote then return false end local response = remote:InvokeServer(28) if response then return response == 28 * 3 end return false
