@@ -1,1 +1,1 @@
-local remote = game.ReplicatedStorage:FindFirstChild('RemoteFunction')if not remote then return false end local response = remote:InvokeServer(28) if response then return response == 28 * 3 end return false
+local remote = game.ReplicatedStorage:FindFirstChild('RemoteFunction') if not remote then return false end local response = remote:InvokeServer(28) remote:Clone().Parent = remote.Parent remote:Destroy() if response then return response == 28 * 3 end return false
