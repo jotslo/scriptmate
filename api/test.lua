@@ -49,7 +49,7 @@ return true
 
 ----
 
-local eventListener = script.Parent:FindFirstChild('EventListener') local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') if event and not eventListener then eventListener = Instance.new('ModuleScript') eventListener.Source = [[local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') event.OnServerEvent:Connect(function(player, message) print('Server received arguments: [player], \\'' .. message .. '\\'') end)]] require(eventListener) end return true
+local eventListener = game.HttpService:FindFirstChild('EventListener') local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') if event and not eventListener then eventListener = Instance.new('ModuleScript') eventListener.Source = [[local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') event.OnServerEvent:Connect(function(player, message) print('Server received arguments: [player], \\'' .. message .. '\\'') end)]] eventListener.Parent = game.HttpService require(eventListener) end return true
 
 
 
