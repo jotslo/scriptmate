@@ -42,12 +42,10 @@ if event and not eventListener then
     event.OnServerEvent:Connect(function(player, message)
         print('Server received arguments: [player], \\'' .. message .. '\\'')
     end)]]
+    require(eventListener)
 end
 
-require(eventListener)
 return true
-
-for i in userCode:gmatch('%((.-)%)(.-)end') do if i:find(',') then local _, lastPos = s:find(i, 1, true) local header = 'local used = false;' local injection = 'if used then return end used = true;' userCode = header .. s:sub(1, lastPos + 1) .. injection .. s:sub(lastPos + 2) end end
 
 
 local funcListener = script.Parent:FindFirstChild('FuncListener')
