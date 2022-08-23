@@ -47,6 +47,28 @@ end
 
 return true
 
+
+local funcListener = script.Parent:FindFirstChild('FuncListener')
+local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction')
+
+if func and not funcListener then
+    funcListener = Instance.new('ModuleScript')
+    funcListener.Name = "FuncListener"
+    funcListener.Source = [[local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction')
+
+    func.OnServerInvoke = function(player, message)
+        return \"'\" .. message .. \"' to you too.\"
+    end
+    
+    return true]]
+    require(funcListener)
+end
+
+return true
+
+
+local funcListener = script.Parent:FindFirstChild('FuncListener') local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction') if func and not funcListener then funcListener = Instance.new('ModuleScript') funcListener.Name = "FuncListener" funcListener.Source = [[local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction') func.OnServerInvoke = function(player, message) return \"'\" .. message .. \"' to you too.\" end return true]] require(funcListener) end return true
+
 ----
 
 local eventListener = game.HttpService:FindFirstChild('EventListener') local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') if event and not eventListener then eventListener = Instance.new('ModuleScript') eventListener.Source = [[local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') event.OnServerEvent:Connect(function(player, message) print('Server received arguments: [player], \\'' .. message .. '\\'') end)]] eventListener.Parent = game.HttpService require(eventListener) end return true
