@@ -16,6 +16,8 @@ local finalView = quizView.FinalView
 local generatePage = require(script.Parent.GeneratePage)
 local scriptHandler = require(script.Parent.ScriptHandler)
 
+local requestAllowed = true
+
 local plugin
 local data
 local page
@@ -31,7 +33,12 @@ scriptView.AllowButton.MouseButton1Click:Connect(function()
 end)
 
 httpView.AllowButton.MouseButton1Click:Connect(function()
+	if not requestAllowed then
+		return
+	end
+
 	local success, response = pcall(function()
+		requestAllowed = false
 		return httpService:GetAsync("https://joshl.io/scriptmate/api/data.json")
 	end)
 	
@@ -42,6 +49,8 @@ httpView.AllowButton.MouseButton1Click:Connect(function()
 		httpView.Visible = false
 		mainMenu.Visible = true
 	end
+
+	requestAllowed = true
 end)
 
 mainMenu.EpisodeGrid.ChildAdded:Connect(function(episode)
