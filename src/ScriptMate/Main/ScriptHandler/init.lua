@@ -55,26 +55,9 @@ local function runTest(testScript, newSource)
 	return testSuccess
 end
 
-local function injectCode(source, injection)
-	local newTest = preExecTest:Clone()
-
-	newTest.Name = "ScriptMateEnv"
-	newTest.Source ..= injection .. "\nend"
-
-	local newSource = require(newTest)(source)
-	newTest:Destroy()
-
-	return newSource
-end
-
 function module.TestCode(page)
 	-- fixes annoying behaviour causing by modulescript caching
 	local fixedSource = sourceHeader .. " " .. scriptEnv.Source
-
-	-- injects extra testing code - used for preventing output spam in ep8
-	if page.Injection then
-		fixedSource = injectCode(fixedSource, page.Injection)
-	end
 
 	if not runTest(preExecTest, page.ScriptValidator) then
 		return false
