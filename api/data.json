@@ -228,7 +228,7 @@
                 {
                     "Type": "Exercise",
                     "Title": "Continue Keyword",
-                    "Description": "Using any loop, output each value from <b>1</b> to <b>10</b>, but skip the number <b>5</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.",
+                    "Description": "Using any loop, output each value from <b>1</b> to <b>10</b>, but skip the number <b>5</b>.\n\nYou may only use the <font color=\"rgb(85,170,255)\">print</font> keyword once in your script.\n\nYou <b>must</b> use the <font color=\"rgb(238,75,43)\">continue</font> keyword in your loop.",
                     "Hint": "You should use an if statement that checks the current value, and the continue keyword, which allows you to skip the current iteration of the loop. You can use the continue keyword inside any loop.",
                     "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 0, 4 do if not log[#log-i].message:find(10 - i) then return false end end for i = 6, 9 do if not log[#log-(i-1)].message:find(10 - i) then return false end end return true",
                     "ScriptValidator": "local _, count = userCode:gsub('print', '') return userCode:find('continue') ~= nil and count == 1"

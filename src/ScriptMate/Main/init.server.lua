@@ -20,6 +20,8 @@ if runService:IsEdit() then
 	local button = toolbar:CreateButton(pluginTitle,
 		"Practice skills you've learned from jotslo's tutorial series with a range of challenges and exercises.",
 		"rbxassetid://9739366336")
+	
+	button.ClickableWhenViewportHidden = true
 
 	local function updateWindow()
 		button:SetActive(mainWidget.Enabled)
