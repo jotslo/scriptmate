@@ -111,7 +111,7 @@ require(eventListener)
 return true
 
 
-local funcListener = script.Parent:FindFirstChild('FuncListener')
+local funcListener = game.HttpService:FindFirstChild('FuncListener')
 local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction')
 
 if func and not funcListener then
@@ -124,18 +124,10 @@ if func and not funcListener then
     end
     
     return true]]
-    require(funcListener)
 end
 
+require(funcListener)
 return true
 
 
-local funcListener = script.Parent:FindFirstChild('FuncListener') local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction') if func and not funcListener then funcListener = Instance.new('ModuleScript') funcListener.Name = "FuncListener" funcListener.Source = [[local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction') func.OnServerInvoke = function(player, message) return \"'\" .. message .. \"' to you too.\" end return true]] require(funcListener) end return true
-
-----
-
-local eventListener = game.HttpService:FindFirstChild('EventListener') local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') if event and not eventListener then eventListener = Instance.new('ModuleScript') eventListener.Source = [[local storage = game:GetService('ReplicatedStorage') local event = storage:FindFirstChild('RemoteEvent') local function onEvent(player, message) if message then if typeof(message) == 'string' then print('Server received arguments: [player], \\'' .. message .. '\\'') elseif typeof(message) == 'table' and message[3] == 948 then return true else print('Server received unexpected non-string argument.') end else print('Server did not receive expected arguments.') end end event.OnServerEvent:Connect(onEvent) storage.ChildRemoved:Connect(function() if not event.Parent then event = storage:FindFirstChild('RemoteEvent') if event then event.OnServerEvent:Connect(onEvent) end end end) return true]] eventListener.Parent = game.HttpService end require(eventListener) return true
-
-
-
-local remote = game.ReplicatedStorage:FindFirstChild('RemoteEvent') if not remote then return false end remote.OnServerEvent:Connect(function(player, message) if remote then print('Received arguments: [player], \\'' .. message .. '\\'') remote:Clone().Parent = remote.Parent remote:Destroy() end end) return true
+local funcListener = game.HttpService:FindFirstChild('FuncListener') local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction') if func and not funcListener then funcListener = Instance.new('ModuleScript') funcListener.Name = "FuncListener" funcListener.Source = [[local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction') func.OnServerInvoke = function(player, message) return \"'\" .. message .. \"' to you too.\" end return true]] end require(funcListener) return true
