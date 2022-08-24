@@ -769,7 +769,7 @@
                 {
                     "Type": "Exercise",
                     "Title": "Factorial",
-                    "Description": "Write a program that outputs the **factorial** for each number from 1 to 10.\n\nThe factorial of a number is the product of all the numbers from 1 to that number.\n\nFor example, the factorial of 5 is 5 * 4 * 3 * 2 * 1 = 120.",
+                    "Description": "Write a program that outputs the <b>factorial</b> for each number from 1 to 10.\n\nThe factorial of a number is the product of all the numbers from 1 to that number.\n\nFor example, the factorial of 5 is 5 * 4 * 3 * 2 * 1 = 120.",
                     "Hint": "You will need to embed for loops. An outer for loop to iterate from 1 to 10, and an inner for loop that takes the current number, determines the factorial and outputs it.",
                     "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 1, 10 do local t = 1 for x = 1, i do t*=x end if not log[(#log-10)+i].message:find(tostring(t)) then return false end end return true",
                     "ScriptValidator": "return true"
@@ -779,7 +779,7 @@
                     "Title": "Prime Numbers",
                     "Description": "Write a program that outputs all prime numbers from 1 to 100.\n\nA prime number is a number that is only divisible by 1 and itself.\n\nFor example, the first 5 prime numbers are 2, 3, 5, 7, and 11.",
                     "Hint": "You will need to embed for loops. An outer for loop to iterate from 1 to 100, and an inner for loop that takes the current number, determines whether it's a prime number and outputs it, if it is.",
-                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() local count = 0 local function prime(n) for i = 2, n^(1/2) do if n % i == 0 then return false end end return true end for i = 2, 100 do if prime(i) then count += 1 end if not log[(#log-25)+count].message:find(tostring(i)) then return false  end end return true",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() local count = 0 local function prime(n) for i = 2, n^(1/2) do if n % i == 0 then return false end end return true end for i = 2, 100 do if prime(i) then count += 1 end if not log[(#log-26)+count].message:find(tostring(i)) then return false end end return true",
                     "ScriptValidator": "return true"
                 },
                 {
