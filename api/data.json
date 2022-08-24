@@ -5,7 +5,7 @@
             "Subtitle": "Introduction",
             "BackgroundImage": "http://www.roblox.com/asset/?id=10204192311",
             "GridPlacement": "001",
-            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 1: https://youtube.com/watch?v=abcdefghij\n\n",
+            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 1: https://www.youtube.com/watch?v=U_QP6S48IaI\n\n",
             "Content": [
                 {
                     "Type": "Exercise",
@@ -102,7 +102,7 @@
             "Subtitle": "If Statements",
             "BackgroundImage": "http://www.roblox.com/asset/?id=10204193205",
             "GridPlacement": "002",
-            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 2: https://youtube.com/watch?v=abcdefghij\n\n",
+            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 2: https://www.youtube.com/watch?v=Gy7vsKBQQj0\n\n",
             "Content": [
                 {
                     "Type": "Exercise",
@@ -191,7 +191,7 @@
             "Subtitle": "Loops",
             "BackgroundImage": "http://www.roblox.com/asset/?id=10204193903",
             "GridPlacement": "003",
-            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 2: https://youtube.com/watch?v=abcdefghij\n\n",
+            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 3: https://www.youtube.com/watch?v=nOIUe4k7Ogo\n\n",
             "Content": [
                 {
                     "Type": "Exercise",
@@ -303,7 +303,7 @@
             "Subtitle": "Tables",
             "BackgroundImage": "http://www.roblox.com/asset/?id=10204197516",
             "GridPlacement": "004",
-            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 1: https://youtube.com/watch?v=abcdefghij\n\n",
+            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 4: https://www.youtube.com/watch?v=JLT4JC9B9nk\n\n",
             "Content": [
                 {
                     "Type": "Exercise",
@@ -400,7 +400,7 @@
             "Subtitle": "Functions",
             "BackgroundImage": "http://www.roblox.com/asset/?id=10204198168",
             "GridPlacement": "005",
-            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 1: https://youtube.com/watch?v=abcdefghij\n\n",
+            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 5: https://www.youtube.com/watch?v=zKd2KOn49XI\n\n",
             "Content": [
                 {
                     "Type": "Exercise",
@@ -497,7 +497,7 @@
             "Subtitle": "Instances",
             "BackgroundImage": "http://www.roblox.com/asset/?id=10204199095",
             "GridPlacement": "006",
-            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 1: https://youtube.com/watch?v=abcdefghij\n\n",
+            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 6: https://www.youtube.com/watch?v=kZp-xOqc6Sg\n\n",
             "Content": [
                 {
                     "Type": "Exercise",
@@ -586,7 +586,7 @@
             "Subtitle": "Local & Module",
             "BackgroundImage": "http://www.roblox.com/asset/?id=10204199852",
             "GridPlacement": "007",
-            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 1: https://youtube.com/watch?v=abcdefghij\n\n",
+            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 7: https://www.youtube.com/watch?v=OMIPc-8gE64\n\n",
             "Content": [
                 {
                     "Type": "Exercise",
@@ -746,6 +746,59 @@
                             "False1": "LocalScript",
                             "False2": "Script",
                             "False3": "ModuleScript"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Title": "Episode 9",
+            "Subtitle": "",
+            "BackgroundImage": "http://www.roblox.com/asset/?id=10204201473",
+            "GridPlacement": "009",
+            "Template": "-- Before completing this exercise, please watch the episode below.\n-- Have feedback? Feel free to send me a tweet @ twitter.com/jotslo\n-- EPISODE 1: https://youtube.com/watch?v=abcdefghij\n\n",
+            "Content": [
+                {
+                    "Type": "Exercise",
+                    "Title": "FizzBuzz",
+                    "Description": "This challenge has been used in interviews for Google, and will test your problem solving skills.\n\nWrite a program that outputs each number from 1 to 100.\n\nFor multiples of three, output \"Fizz\" instead of the number.\n\nFor multiples of five, output \"Buzz\" instead of the number.\n\nFor multiples of both three and five, output \"FizzBuzz\" instead of the number.",
+                    "Hint": "To check whether a number is a multiple of another number, use the <b>modulo</b> operator. For example, <b>10 % 5</b> returns a value of 0, which means that 10 is a multiple of 5.",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 1, 100 do local out = '' if i % 3 == 0 then out ..= 'Fizz' end if i % 5 == 0 then out ..= 'Buzz' end if #out == 0 then out = tostring(i) end if not log[(#log-100)+i].message:find(out) then return false end end return true",
+                    "ScriptValidator": "return true"
+                },
+                {
+                    "Type": "Exercise",
+                    "Title": "Factorial",
+                    "Description": "Write a program that outputs the **factorial** for each number from 1 to 10.\n\nThe factorial of a number is the product of all the numbers from 1 to that number.\n\nFor example, the factorial of 5 is 5 * 4 * 3 * 2 * 1 = 120.",
+                    "Hint": "You will need to embed for loops. An outer for loop to iterate from 1 to 10, and an inner for loop that takes the current number, determines the factorial and outputs it.",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() for i = 1, 10 do local t = 1 for x = 1, i do t*=x end if not log[(#log-10)+i].message:find(tostring(t)) then return false end end return true",
+                    "ScriptValidator": "return true"
+                },
+                {
+                    "Type": "Exercise",
+                    "Title": "Prime Numbers",
+                    "Description": "Write a program that outputs all prime numbers from 1 to 100.\n\nA prime number is a number that is only divisible by 1 and itself.\n\nFor example, the first 5 prime numbers are 2, 3, 5, 7, and 11.",
+                    "Hint": "You will need to embed for loops. An outer for loop to iterate from 1 to 100, and an inner for loop that takes the current number, determines whether it's a prime number and outputs it, if it is.",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() local count = 0 local function prime(n) for i = 2, n^(1/2) do if n % i == 0 then return false end end return true end for i = 2, 100 do if prime(i) then count += 1 end if not log[(#log-25)+count].message:find(tostring(i)) then return false  end end return true",
+                    "ScriptValidator": "return true"
+                },
+                {
+                    "Type": "Exercise",
+                    "Title": "HttpService",
+                    "Description": "Using <b>HttpService</b>, write a program that outputs the contents of the following URL:\n\n<font face=\"Code\">https://JoshL.io/final</font>",
+                    "Hint": "HttpService has a :GetAsync(url) method, which returns the contents of a webpage. After getting the contents, output the message.",
+                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() if not log[#log].message:find('Congratulations, you have finished the') then return false end return true",
+                    "ScriptValidator": "if userCode:find('Congratulations, you have finished the') or not userCode:find('HttpService') then return false end return true"
+                },
+                {
+                    "Type": "Quiz",
+                    "Questions": [
+                        {
+                            "Question": "Have you subscribed to jotslo?",
+                            "Answer": "Of course!",
+                            "False1": "No",
+                            "False2": "lol no",
+                            "False3": "Nah."
                         }
                     ]
                 }
