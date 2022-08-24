@@ -1,3 +1,44 @@
+local storage = game:GetService('ReplicatedStorage')
+local event = storage:FindFirstChild('RemoteEvent')
+
+local function onEvent(player, message)
+    if message then
+        if typeof(message) == 'string' then
+            print('Server received arguments: [player], \\'' .. message .. '\\'')
+        elseif typeof(message) == 'table' and message[3] == 948 then
+            return true
+        else
+            print('Server received unexpected non-string argument.')
+        end
+    else print('Server did not receive expected arguments.') end
+end
+
+event.OnServerEvent:Connect(onEvent)
+
+storage.ChildRemoved:Connect(function()
+    if not event.Parent then
+        event = storage:FindFirstChild('RemoteEvent')
+        if event then
+            event.OnServerEvent:Connect(onEvent)
+        end
+    end
+end)
+
+return true
+
+
+
+
+local storage = game:GetService('ReplicatedStorage') local event = storage:FindFirstChild('RemoteEvent') local function onEvent(player, message) if message then if typeof(message) == 'string' then print('Server received arguments: [player], \\'' .. message .. '\\'') elseif typeof(message) == 'table' and message[3] == 948 then return true else print('Server received unexpected non-string argument.') end else print('Server did not receive expected arguments.') end end event.OnServerEvent:Connect(onEvent) storage.ChildRemoved:Connect(function() if not event.Parent then event = storage:FindFirstChild('RemoteEvent') if event then event.OnServerEvent:Connect(onEvent) end end end) return true
+
+
+
+
+
+
+
+
+
 local remote = game.ReplicatedStorage:FindFirstChild('RemoteEvent')
 local handler
 
@@ -38,12 +79,34 @@ local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent')
 if event and not eventListener then
     eventListener = Instance.new('ModuleScript')
     eventListener.Source = [[local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent')
+    
+    local handler = function(player, message)
+        if not event.Name == "RemoteEvent" then return end
+        if message then
+            if typeof(message) == 'string' then
+                print('Server received arguments: [player], \\'' .. message .. '\\'')
+            elseif typeof(message) == 'table' and message[3] == 948 then 
+                return true
+            else
+                print('Server received unexpected non-string argument.')
+            end
+        else
+            print('Server did not receive expected arguments.')
+        end
+    end
 
-    event.OnServerEvent:Connect(function(player, message)
-        print('Server received arguments: [player], \\'' .. message .. '\\'')
-    end)]]
-    require(eventListener)
+    event.OnServerEvent:Connect(handler)
+    game.ReplicatedStorage.ChildAdded:Connect(function(child)
+        if child.Name == "RemoteEvent" and event.Parent == nil then
+            event = child
+            child.OnServerEvent:Connect(handler)
+        end
+    end)
+    
+    return true]]
 end
+
+require(eventListener)
 
 return true
 
@@ -71,7 +134,7 @@ local funcListener = script.Parent:FindFirstChild('FuncListener') local func = g
 
 ----
 
-local eventListener = game.HttpService:FindFirstChild('EventListener') local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') if event and not eventListener then eventListener = Instance.new('ModuleScript') eventListener.Source = [[local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') event.OnServerEvent:Connect(function(player, message) print('Server received arguments: [player], \\'' .. message .. '\\'') end)]] eventListener.Parent = game.HttpService require(eventListener) end return true
+local eventListener = game.HttpService:FindFirstChild('EventListener') local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') if event and not eventListener then eventListener = Instance.new('ModuleScript') eventListener.Source = [[local storage = game:GetService('ReplicatedStorage') local event = storage:FindFirstChild('RemoteEvent') local function onEvent(player, message) if message then if typeof(message) == 'string' then print('Server received arguments: [player], \\'' .. message .. '\\'') elseif typeof(message) == 'table' and message[3] == 948 then return true else print('Server received unexpected non-string argument.') end else print('Server did not receive expected arguments.') end end event.OnServerEvent:Connect(onEvent) storage.ChildRemoved:Connect(function() if not event.Parent then event = storage:FindFirstChild('RemoteEvent') if event then event.OnServerEvent:Connect(onEvent) end end end) return true]] eventListener.Parent = game.HttpService end require(eventListener) return true
 
 
 
