@@ -19,12 +19,9 @@ local finalView = quizView.FinalView
 
 local map = {
 	BackgroundColor3 = {
-		[ui] = color.MainBackground,
-		[ui.Author.Border] = color.MainText
+		[ui] = color.MainBackground
 	},
 	TextColor3 = {
-		[ui.Author] = color.MainText,
-		[ui.Author.Subtitle] = color.MainText,
 		[scriptView.MainLabel] = color.MainText,
 		[scriptView.Description] = color.MainText,
 		[httpView.MainLabel] = color.MainText,
