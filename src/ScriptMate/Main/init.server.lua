@@ -56,7 +56,7 @@ if runService:IsEdit() then
 
 		local widgetInfo = DockWidgetPluginGuiInfo.new(
 			Enum.InitialDockState.Left,
-			true, true, 0, 0, 320, 600)
+			true, true, 0, 0, 320, 450)
 		local widget = plugin:CreateDockWidgetPluginGui(
 			httpService:GenerateGUID(), widgetInfo)
 
