@@ -42,7 +42,7 @@ local function getCategory(identifier)
 end
 
 local function getFirstPage(category, categoryData)
-	for index, score in categoryData.Scores do
+	for index, score in categoryData.Scores or {} do
 		if score < 100 then
 			return category.Content[index]
 		end
@@ -73,7 +73,7 @@ local function updateMenuTick(category, categoryData)
 	local button = episodeGrid:FindFirstChild(category.GridPlacement)
 	
 	if button then
-		button.Completed.Visible = categoryData.Completed
+		button.Completed.Visible = categoryData.Completed or false
 	end
 end
 
@@ -93,7 +93,7 @@ local function updateProgress(currentPage, category, categoryData)
 			pageRef ..= "Viewing"
 		end
 		
-		if categoryData.Scores[index] == 100 then
+		if categoryData.Scores and categoryData.Scores[index] == 100 then
 			completeCount += 1
 			pageRef ..= "Done"
 		end
@@ -105,7 +105,7 @@ local function updateProgress(currentPage, category, categoryData)
 		icon.Parent = progress.Pages
 	end
 	
-	if completeCount == #categoryData.Scores then
+	if completeCount == #(categoryData.Scores) then
 		categoryData.Completed = true
 		plugin:SetSetting(categoryData.Setting, categoryData)
 	end
@@ -149,7 +149,7 @@ end
 
 local function generateQuiz(page)
 	local pageNumber = getPageNumber(page)
-	local score = categoryData.Scores[pageNumber]
+	local score = categoryData.Scores[pageNumber] or 0
 
 	scriptHandler.HideScript()
 	practiceView.Completed.Visible = score == 100
@@ -167,11 +167,12 @@ end
 
 local function generateExercise(page)
 	local pageNumber = getPageNumber(page)
-	local score = categoryData.Scores[pageNumber]
+	local score = categoryData.Scores[pageNumber] or 0
 	
 	practiceView.Completed.Visible = score == 100
 	exerciseView.TitleLabel.Text = page.Title
 	exerciseView.Description.Text = page.Description
+
 	scriptHandler.SetupEnv(categoryData.Sources[pageNumber],
 		categoryData, pageNumber, category)
 	
@@ -219,6 +220,17 @@ function module.SetupPage(localPlugin, identifier, handler)
 	category = getCategory(identifier)
 	categoryData = plugin:GetSetting(setting)
 		or generateSettings(setting, category)
+	
+	-- if categories are missing from database,
+	-- add the missing values. prevents corruption
+	if #categoryData.Sources < #category.Content then
+		for i = 1, #category.Content - #categoryData.Sources do
+			categoryData.Sources[#categoryData.Sources + 1] = category.Template
+			categoryData.Scores[#categoryData.Scores + 1] = 0
+		end
+
+		categoryData.Setting = setting
+	end
 	
 	practiceView.MainLabel.Text = category.Subtitle
 	
@@ -297,8 +309,10 @@ function module.NextQuestion(page, button, questionNumber)
 end
 
 updateData.Event:Connect(function(newCatData)
-	categoryData = newCatData
-	plugin:SetSetting(categoryData.Setting, categoryData)
+	if newCatData and newCatData.Setting then
+		categoryData = newCatData
+		plugin:SetSetting(categoryData.Setting, categoryData)
+	end
 end)
 
 return module

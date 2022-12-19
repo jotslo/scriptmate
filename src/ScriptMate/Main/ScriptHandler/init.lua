@@ -80,7 +80,7 @@ function module.SetupEnv(source, newCatData, newPageNo, category)
 	
 	pageNumber = newPageNo
 	categoryData = newCatData
-	scriptEnv.Source = source
+	scriptEnv.Source = source or ""
 	plugin:OpenScript(scriptEnv, lineCount)
 end
 
