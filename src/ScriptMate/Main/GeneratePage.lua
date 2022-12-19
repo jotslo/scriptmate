@@ -203,7 +203,7 @@ end
 
 local function updatePage(page)
 	updateProgress(page, category, categoryData)
-
+	
 	if page.Type == "Exercise" then
 		generateExercise(page)
 	elseif page.Type == "Quiz" then

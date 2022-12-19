@@ -72,16 +72,10 @@ function module.TestCode(page)
 end
 
 function module.SetupEnv(source, newCatData, newPageNo, category)
-	local lineCount = #scriptEnv.Source:split("\n")
-	
-	--if pageNumber and category.Content[pageNumber].Type == "Exercise" then
-	--	autoSaveScript(true)
-	--end
-	
 	pageNumber = newPageNo
 	categoryData = newCatData
 	scriptEnv.Source = source or ""
-	plugin:OpenScript(scriptEnv, lineCount)
+	plugin:OpenScript(scriptEnv, #scriptEnv.Source:split("\n"))
 end
 
 function module.GenerateScript(localPlugin)
