@@ -89,6 +89,12 @@ exerciseView.TestButton.MouseButton1Click:Connect(function()
 	end
 end)
 
+exerciseView.OkButton.MouseButton1Click:Connect(function()
+	page = generatePage.CompletedPage(page, true)
+	
+	scriptHandler.HideScript()
+end)
+
 practiceView.HomeButton.MouseButton1Click:Connect(function()
 	if page.Type == "Exercise" then
 		scriptHandler.SaveScript(true)

@@ -168,10 +168,16 @@ end
 local function generateExercise(page)
 	local pageNumber = getPageNumber(page)
 	local score = categoryData.Scores[pageNumber] or 0
+	local isIntro = page.Title == "Welcome!"
 	
 	practiceView.Completed.Visible = score == 100
 	exerciseView.TitleLabel.Text = page.Title
 	exerciseView.Description.Text = page.Description
+
+	exerciseView.OkButton.Visible = isIntro
+	exerciseView.TestButton.Visible = not isIntro
+	exerciseView.HintButton.Visible = not isIntro
+	practiceView.Progress.Visible = not isIntro
 
 	scriptHandler.SetupEnv(categoryData.Sources[pageNumber],
 		categoryData, pageNumber, category)
@@ -253,7 +259,7 @@ function module.SwitchPage(page, direction)
 	return page
 end
 
-function module.CompletedPage(page)
+function module.CompletedPage(page, isIntro)
 	local pageNumber = getPageNumber(page)
 	
 	if categoryData.Scores[pageNumber] ~= 100 then
@@ -272,6 +278,12 @@ function module.CompletedPage(page)
 	end
 	
 	scriptHandler.SaveScript(true)
+
+	if isIntro then
+		practiceView.Visible = false
+		mainMenu.Visible = true
+	end
+
 	return page
 end
 
