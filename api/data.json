@@ -1,6 +1,23 @@
 {
     "Categories": [
         {
+            "Title": "Episode 0",
+            "Subtitle": "Get Started",
+            "BackgroundImage": "http://www.roblox.com/asset/?id=13727003716",
+            "GridPlacement": "000",
+            "Template": "--[[\n\nRECOMMENDED: Watch the video tutorial series here:\nhttps://devforum.roblox.com/t/video/1972156\n\nNeed more help? Join this scripting chat server:\nhttps://roblox.com/groups/3232454\n\n]]",
+            "Content": [
+                {
+                    "Type": "Exercise",
+                    "Title": "Welcome!",
+                    "Description": "It is <b>highly recommended</b> to watch the short tutorial videos before each episode.\n\n<b>Copy the link</b> in the script editor to get started.\n\nIf you have any feedback, be sure to tweet <font color=\"#1DA1F2\">@jotslo</font>.\n\nGood luck on your scripting journey!",
+                    "Hint": "Press 'Test Code' to continue.",
+                    "Validator": "return true",
+                    "ScriptValidator": "return true"
+                }
+            ]
+        },
+        {
             "Title": "Episode 1",
             "Subtitle": "Introduction",
             "BackgroundImage": "http://www.roblox.com/asset/?id=10204192311",
@@ -85,13 +102,6 @@
                             "False1": "The script crashes",
                             "False2": "The output window shows the variable's value",
                             "False3": "The output window shows 'undefined'"
-                        },
-                        {
-                            "Question": "Which of these scripts will cause an error?",
-                            "Answer": "<font face=\"Code\">1var = true</font>",
-                            "False1": "<font face=\"Code\">var3 = [[false]]</font>",
-                            "False2": "<font face=\"Code\">MY_VAR = 'yes'</font>",
-                            "False3": "<font face=\"Code\">v4r = 9.6</font>"
                         }
                     ]
                 }
@@ -679,27 +689,11 @@
             "Content": [
                 {
                     "Type": "Exercise",
-                    "Title": "Handling Remote Events",
-                    "Description": "Manually, add a <b>RemoteEvent</b> to the <b>ReplicatedStorage</b> and do <b>not</b> rename it.\n\nNext, return to the ScriptMateEnv script editor, and assume you are writing a LocalScript.\n\nFinally, fire the RemoteEvent's server-side event, and pass any string as an argument.",
-                    "Hint": "Use the :FireServer() method to fire the event on the server. Then, pass any string as an argument, between the brackets when calling the method.",
-                    "Validator": "wait() local log = game:GetService('LogService'):GetLogHistory() local msg = log[#log].message if msg:find('Server received arguments') and not msg:find('nil') then return true end return false",
-                    "ScriptValidator": "local eventListener = game.HttpService:FindFirstChild('EventListener') local event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') if event then Instance.new('RemoteEvent', game.ReplicatedStorage) event:Destroy() event = game.ReplicatedStorage:FindFirstChild('RemoteEvent') end if event and not eventListener then eventListener = Instance.new('ModuleScript') eventListener.Name = 'EventListener' eventListener.Source = [[local storage = game:GetService('ReplicatedStorage') local event = storage:FindFirstChild('RemoteEvent') local function onEvent(player, message) if message then if typeof(message) == 'string' then print('Server received arguments: [player], \\'' .. message .. '\\'') elseif typeof(message) == 'table' and message[3] == 948 then return true else print('Server received unexpected non-string argument.') end else print('Server did not receive expected arguments.') end end event.OnServerEvent:Connect(onEvent) storage.ChildRemoved:Connect(function() if not event.Parent then event = storage:FindFirstChild('RemoteEvent') if event then event.OnServerEvent:Connect(onEvent) end end end) return true]] eventListener.Parent = game.HttpService end require(eventListener) return true"
-                },
-                {
-                    "Type": "Exercise",
                     "Title": "Handling Remote Events #2",
                     "Description": "In the script editor, assume you are now writing a server script, and listen for a server event from the <b>RemoteEvent</b>.\n\nThe event will pass <b>two arguments</b>, one being the <b>Player</b> that fired the event, and one being a <b>table</b>.\n\nThe table contains a list of numbers. Your function must output the <b>3rd number</b> in the table, when the event is fired.\n\n<i>Note: The player argument will be a nil value for this demonstration.</i>",
                     "Hint": "Listen for .OnServerEvent and create parameters for the player and table. Then, simply use square brackets to get the 3rd value in the table.",
                     "Validator": "local remote = game.ReplicatedStorage:FindFirstChild('RemoteEvent') if not remote then return false end remote:FireServer({100.3, 123, 948, 33.09, 456}) wait() local log = game:GetService('LogService'):GetLogHistory() local msg = log[#log].message if msg:find('948') then return true end return false",
                     "ScriptValidator": "local remote = game.ReplicatedStorage:FindFirstChild('RemoteEvent') Instance.new('RemoteEvent', game.ReplicatedStorage) remote:Destroy() return true"
-                },
-                {
-                    "Type": "Exercise",
-                    "Title": "Handling Remote Functions",
-                    "Description": "Manually, add a <b>RemoteFunction</b> to the <b>ReplicatedStorage</b> and do <b>not</b> rename it.\n\nNext, return to the ScriptMateEnv script editor, and assume you are writing a LocalScript.\n\nThen, invoke the <b>RemoteFunction</b> and pass any string as an argument.\n\nFinally, output the returned value.",
-                    "Hint": "To invoke a RemoteFunction, call the :InvokeServer() method. Then, pass any string as an argument, between the brackets when calling the method. You must then output the returned value.",
-                    "Validator": "local remote = game.ReplicatedStorage:FindFirstChild('RemoteFunction') if not remote then return false end wait() local log = game:GetService('LogService'):GetLogHistory() local msg = log[#log].message if msg:find('to you too') then return true end return false",
-                    "ScriptValidator": "local funcListener = game.HttpService:FindFirstChild('FuncListener') local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction') if func and not funcListener then funcListener = Instance.new('ModuleScript') funcListener.Name = 'FuncListener' funcListener.Source = [[local func = game.ReplicatedStorage:FindFirstChild('RemoteFunction') func.OnServerInvoke = function(player, message) if message then if typeof(message) == 'string' then return \"'\" .. message .. \"' to you too.\" end end return 'Incorrect arguments sent.' end return true]] end require(funcListener) return true"
                 },
                 {
                     "Type": "Exercise",

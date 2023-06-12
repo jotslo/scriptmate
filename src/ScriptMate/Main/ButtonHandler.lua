@@ -15,8 +15,10 @@ local finalView = quizView.FinalView
 
 local generatePage = require(script.Parent.GeneratePage)
 local scriptHandler = require(script.Parent.ScriptHandler)
+--local debugContent = require(script.Parent.DebugContent)
 
 local requestAllowed = true
+local debugMode = false
 
 local plugin
 local data
@@ -39,7 +41,13 @@ httpView.AllowButton.MouseButton1Click:Connect(function()
 
 	local success, response = pcall(function()
 		requestAllowed = false
-		return httpService:GetAsync("https://joshl.io/scriptmate/api/data.json")
+
+		--if debugMode then
+		--	return debugContent
+		--end
+
+		--return httpService:GetAsync("https://joshl.io/scriptmate/api/data.json")
+		return httpService:GetAsync("https://jotslo.com/api/sm/data.json")
 	end)
 	
 	if success then
