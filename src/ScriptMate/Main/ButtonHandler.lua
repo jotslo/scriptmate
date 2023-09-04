@@ -16,15 +16,16 @@ local finalView = quizView.FinalView
 
 local generatePage = require(script.Parent.GeneratePage)
 local scriptHandler = require(script.Parent.ScriptHandler)
+local macroHandler = require(script.Parent.MacroHandler)
 local consts = require(script.Parent.Consts)
 
 local content do
 	if consts.IsTesting then
-		local mod = workspace.Content.Lite.MainModule:Clone()
+		local mod = workspace.Content.Pro.MainModule:Clone()
 		content = require(mod)
 		mod:Destroy()
 	else
-		content = require(14438018012)
+		content = require(14438018012) ----/// update
 	end
 end
 
@@ -89,16 +90,18 @@ exerciseView.HintButton.MouseButton1Click:Connect(function()
 end)
 
 exerciseView.SolButton.MouseButton1Click:Connect(function()
-	ui.NoticeView.Visible = true
-	ui.NoticeView.NoSolution.Visible = true
+	if page and page.Solution then
+		if page.ExtraCode then
+			scriptHandler.RunScript(page.ExtraCode)
+		end
 
-	ui.NoticeView.UpgradeMsg.Visible = false
-	ui.NoticeView.NoTeamCreate.Visible = false
+		scriptHandler.ShowSolution(page.Solution)
+	end
 end)
 
-ui.NoticeView.NoSolution.OkButton.MouseButton1Click:Connect(function()
+--[[ui.NoticeView.NoSolution.OkButton.MouseButton1Click:Connect(function()
 	ui.NoticeView.Visible = false
-end)
+end)]]
 
 exerciseView.TestButton.MouseButton1Click:Connect(function()
 	if ui.NoticeView.Visible then return end
@@ -161,6 +164,41 @@ finalView.RetryButton.MouseButton1Click:Connect(function()
 	generatePage.DisplayQuestion(page, 1)
 end)
 
+mainMenu.Toggle.MacroButton.MouseButton1Click:Connect(function()
+	mainMenu.Toggle.MacroButton.Visible = false
+	mainMenu.Toggle.MacroOpened.Visible = true
+	mainMenu.Toggle.EpisodeButton.Visible = true
+	mainMenu.Toggle.EpisodeOpened.Visible = false
+
+	mainMenu.EpisodeGrid.Visible = false
+	mainMenu.EpisodeSearch.Visible = false
+
+	mainMenu.MacroList.Visible = true
+	mainMenu.MacroSearch.Visible = true
+	mainMenu.MacroAddButton.Visible = true
+end)
+
+mainMenu.Toggle.EpisodeButton.MouseButton1Click:Connect(function()
+	mainMenu.Toggle.MacroButton.Visible = true
+	mainMenu.Toggle.MacroOpened.Visible = false
+	mainMenu.Toggle.EpisodeButton.Visible = false
+	mainMenu.Toggle.EpisodeOpened.Visible = true
+
+	mainMenu.EpisodeGrid.Visible = true
+	mainMenu.EpisodeSearch.Visible = true
+
+	mainMenu.MacroList.Visible = false
+	mainMenu.MacroSearch.Visible = false
+	mainMenu.MacroAddButton.Visible = false
+end)
+
+mainMenu.EpisodeSearch.SearchBox:GetPropertyChangedSignal("Text"):Connect(function()
+	local text = mainMenu.EpisodeSearch.SearchBox.Text
+	local searchContent = text:lower():gsub("%s", "")
+
+	generatePage.SetupMenu(plugin, content, searchContent)
+end)
+
 for _, button in questionView:GetChildren() do
 	if button:IsA("TextButton") then
 		button.MouseButton1Click:Connect(function()
@@ -178,4 +216,6 @@ return function(localPlugin)
 	if plugin:GetSetting(`{consts.DataId}000`) then
 		openMainMenu()
 	end
+
+	macroHandler.SetupMacros(plugin, content.Macros, ui)
 end

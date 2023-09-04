@@ -18,7 +18,7 @@ if runService:IsEdit() then
 
 	local toolbar = plugin:CreateToolbar(pluginTitle)
 	local button = toolbar:CreateButton("Practice",
-		"Improve your scripting skills with a range of tutorials, challenges & more.",
+		"Improve your scripting skills with a range of tutorials, challenges && more.",
 		"rbxassetid://14594380008")
 	
 	button.ClickableWhenViewportHidden = true

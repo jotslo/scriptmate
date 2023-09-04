@@ -9,7 +9,3 @@ if x == 5 then
     -- we print the value of myVar to the output
     print(myVar) -- 13 is outputted
 end
-
--- we then print the value of myVar to the output
--- this will output nil, as myVar doesn't exist here
-print(myVar) -- nil is outputted

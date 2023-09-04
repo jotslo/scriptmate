@@ -188,17 +188,34 @@ local function generateExercise(page)
 	exerciseView.Visible = true
 end
 
-function module.SetupMenu(localPlugin, newData)
+function module.SetupMenu(localPlugin, newData, searchContent)
 	plugin = localPlugin
 	data = newData
 
 	local sizeLimit = 0
+
+	-- remove existing episodes
+	for _, episode in episodeGrid:GetChildren() do
+		if episode:IsA("ImageButton") and episode.Name ~= "_Template" then
+			episode:Destroy()
+		end
+	end
 	
 	for _, category in data.Categories do
 		local setting = consts.DataId .. category.GridPlacement
 		
 		categoryData = plugin:GetSetting(setting)
 			or generateSettings(setting, category)
+
+		-- if this is a search, check whether the episode matches
+		if searchContent then
+			local episodeContent = category.Title .. category.Subtitle
+			episodeContent = episodeContent:lower():gsub("%s", "")
+
+			if not episodeContent:find(searchContent, 1, true) then
+				continue
+			end
+		end
 		
 		local episode = episodeGrid._Template:Clone()
 		episode.Title.Text = category.Title
@@ -310,6 +327,10 @@ function module.CompletedPage(page, isStatement)
 	scriptHandler.SaveScript(true)
 
 	return page
+end
+
+function module.GetSolution()
+	print(categoryData, category, data)
 end
 
 function module.DisplayQuestion(page, questionNumber)

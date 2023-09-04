@@ -1,5 +1,4 @@
 -- we use a for loop from 1 to 10
-
 for i = 1, 10 do
 
     -- if i is 5, skip to the next loop

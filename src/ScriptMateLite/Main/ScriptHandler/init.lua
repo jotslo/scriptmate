@@ -57,13 +57,13 @@ end
 
 function module.TestCode(page)
 	-- fixes annoying behaviour causing by modulescript caching
-	local fixedSource = sourceHeader .. " " .. scriptEnv.Source
+	local fixedSource = sourceHeader .. "\n" .. scriptEnv.Source
 
 	if not runTest(preExecTest, page.ScriptValidator) then
 		return false
 	end
 
-	if not runTest(execTest, fixedSource .. " " .. page.Validator) then
+	if not runTest(execTest, fixedSource .. "\n" .. page.Validator) then
 		return false
 	end
 
@@ -86,7 +86,14 @@ function module.GenerateScript(localPlugin)
 	scriptEnv = Instance.new("Script")
 	scriptEnv.Name = "ScriptMateEnv"
 	scriptEnv.Source = "-- This script is used for ScriptMate exercises"
-	scriptEnv.Parent = httpService
+
+	if not httpService:FindFirstChild("SMLite") then
+		local pro = Instance.new("Folder")
+		pro.Name = "SMLite"
+		pro.Parent = httpService
+	end
+
+	scriptEnv.Parent = httpService.SMLite
 	
 	for _, child in httpService:GetChildren() do
 		if child.Name == "ScriptMateEnv" and child ~= scriptEnv then

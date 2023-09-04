@@ -1,6 +1,6 @@
 local module = {}
 
 module.DataId = "scriptmate" --///scriptmate
-module.IsTesting = false
+module.IsTesting = true
 
 return module

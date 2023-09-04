@@ -3,7 +3,7 @@ local httpService = game:GetService("HttpService")
 
 -- only run plugin if studio is not in run mode
 if runService:IsEdit() then
-	local pluginTitle = "ScriptMate Lite"
+	local pluginTitle = "ScriptMate"
 
 	local ui = script.Parent:WaitForChild("UI")
 	local scriptView = ui.UserView.ModScriptView
@@ -18,8 +18,8 @@ if runService:IsEdit() then
 
 	local toolbar = plugin:CreateToolbar(pluginTitle)
 	local button = toolbar:CreateButton("Practice",
-		"Improve your scripting skills with a range of tutorials, challenges & more.",
-		"rbxassetid://14594380008")
+		"Improve your scripting skills with a range of tutorials, challenges && more.",
+		"rbxassetid://14605179846")
 	
 	button.ClickableWhenViewportHidden = true
 
@@ -65,6 +65,11 @@ if runService:IsEdit() then
 		return widget
 	end
 
+	local function prepareDefault()
+		--ui.UserView.MainMenu.Visible = false
+		--ui.UserView.ModScriptView.Visible = true
+	end
+
 	button.Click:Connect(function()
 		windowState = not windowState
 		button:SetActive(windowState)
@@ -90,4 +95,5 @@ if runService:IsEdit() then
 	button:SetActive(windowState)
 	require(script.ButtonHandler)(plugin)
 	updateTheme()
+	prepareDefault()
 end

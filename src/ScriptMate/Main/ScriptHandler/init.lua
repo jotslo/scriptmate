@@ -57,18 +57,25 @@ end
 
 function module.TestCode(page)
 	-- fixes annoying behaviour causing by modulescript caching
-	local fixedSource = sourceHeader .. " " .. scriptEnv.Source
+	local fixedSource = sourceHeader .. "\n" .. scriptEnv.Source
 
 	if not runTest(preExecTest, page.ScriptValidator) then
 		return false
 	end
 
-	if not runTest(execTest, fixedSource .. " " .. page.Validator) then
+	if not runTest(execTest, fixedSource .. "\n" .. page.Validator) then
 		return false
 	end
 
 	print("ScriptMate - Code success!")
 	return true
+end
+
+function module.RunScript(code)
+	local newScript = Instance.new("ModuleScript")
+	newScript.Source = `{code}\nreturn nil`
+	require(newScript)
+	newScript:Destroy()
 end
 
 function module.SetupEnv(source, newCatData, newPageNo, category)
@@ -86,10 +93,18 @@ function module.GenerateScript(localPlugin)
 	scriptEnv = Instance.new("Script")
 	scriptEnv.Name = "ScriptMateEnv"
 	scriptEnv.Source = "-- This script is used for ScriptMate exercises"
-	scriptEnv.Parent = httpService
+
+	if not httpService:FindFirstChild("SMPro") then
+		local pro = Instance.new("Folder")
+		pro.Name = "SMPro"
+		pro.Parent = httpService
+	end
+
+	scriptEnv.Parent = httpService.SMPro
 	
 	for _, child in httpService:GetChildren() do
 		if child.Name == "ScriptMateEnv" and child ~= scriptEnv then
+			print("destroying!")
 			child:Destroy()
 		end
 	end
@@ -119,6 +134,12 @@ end
 function module.HideScript()
 	if scriptEnv.Parent then
 		scriptEnv:Destroy()
+	end
+end
+
+function module.ShowSolution(solution)
+	if scriptEnv then
+		scriptEnv.Source = solution
 	end
 end
 
