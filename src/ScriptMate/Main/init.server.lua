@@ -17,7 +17,7 @@ if runService:IsEdit() then
 	local mainWidget
 
 	local toolbar = plugin:CreateToolbar(pluginTitle)
-	local button = toolbar:CreateButton("Practice",
+	local button = toolbar:CreateButton("ScriptMate",
 		"Improve your scripting skills with a range of tutorials, challenges && more.",
 		"rbxassetid://14605179846")
 	
@@ -31,7 +31,17 @@ if runService:IsEdit() then
 	local function updateTheme()
 		for property, list in themeMap do
 			for element, color in list do
-				element[property] = studio.Theme:GetColor(color)
+				local newColor = studio.Theme:GetColor(color)
+
+				-- if input field and light mode, make it slightly darker
+				if color == Enum.StudioStyleGuideColor.InputFieldBackground then
+					if newColor.R > 0.8 then
+						element[property] = Color3.new(0.9, 0.9, 0.9)
+						continue
+					end
+				end
+
+				element[property] = newColor
 			end
 		end
 	end
@@ -92,8 +102,8 @@ if runService:IsEdit() then
 	end
 	
 	studio.ThemeChanged:Connect(updateTheme)
+	updateTheme()
 	button:SetActive(windowState)
 	require(script.ButtonHandler)(plugin)
-	updateTheme()
 	prepareDefault()
 end

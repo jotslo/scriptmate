@@ -1,6 +1,7 @@
 local color = Enum.StudioStyleGuideColor
 
 local ui = script.Parent.Parent:WaitForChild("UI")
+local studio = settings().Studio
 
 local userView = ui.UserView
 local footer = ui.Footer
@@ -21,7 +22,13 @@ local finalView = quizView.FinalView
 
 local map = {
 	BackgroundColor3 = {
-		[ui] = color.MainBackground
+		[ui] = color.MainBackground,
+
+		--v1.2
+		[menu.EpisodeSearch] = color.InputFieldBackground,
+		[menu.MacroSearch] = color.InputFieldBackground,
+		[menu.MacroAddButton] = color.InputFieldBackground
+
 	},
 	TextColor3 = {
 		[scriptView.MainLabel] = color.MainText,
@@ -37,7 +44,14 @@ local map = {
 		[finalView.FailLabel] = color.MainText,
 		[finalView.PassLabel] = color.MainText,
 		[finalView.Title] = color.MainText,
-		[footer.Title] = color.MainText
+		[footer.Title] = color.MainText,
+
+		--v1.2
+		[menu.MacroList._Template.Title] = color.MainText,
+		[menu.EpisodeSearch.SearchBox] = color.MainText,
+		[menu.MacroSearch.SearchBox] = color.MainText,
+		[menu.EpisodeGrid.Upcoming] = color.MainText,
+		[menu.MacroAddButton] = color.MainText,
 	},
 	ImageColor3 = {
 		--[practiceView.HomeButton] = color.MainText,
@@ -46,8 +60,18 @@ local map = {
 		[pages._PageViewing] = color.MainText,
 		[pages._Page] = color.MainText,
 		[pages._PageDone] = color.MainText,
-		[pages._PageViewingDone] = color.MainText
-	}
+		[pages._PageViewingDone] = color.MainText,
+
+		--v1.2
+		[menu.MacroList._Template.DelButton] = color.MainText,
+		[menu.MacroList._Template.EditButton] = color.MainText,
+		[menu.EpisodeSearch.Icon] = color.MainText,
+		[menu.MacroSearch.Icon] = color.MainText
+	},
+	PlaceholderColor3 = {
+		[menu.EpisodeSearch.SearchBox] = color.DimmedText,
+		[menu.MacroSearch.SearchBox] = color.DimmedText
+	},
 }
 
 return map

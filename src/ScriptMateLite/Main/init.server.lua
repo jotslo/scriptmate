@@ -17,7 +17,7 @@ if runService:IsEdit() then
 	local mainWidget
 
 	local toolbar = plugin:CreateToolbar(pluginTitle)
-	local button = toolbar:CreateButton("Practice",
+	local button = toolbar:CreateButton("ScriptMate",
 		"Improve your scripting skills with a range of tutorials, challenges && more.",
 		"rbxassetid://14594380008")
 	
