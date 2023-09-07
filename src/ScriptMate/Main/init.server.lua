@@ -10,6 +10,7 @@ if runService:IsEdit() then
 
 	local studio = settings().Studio
 	local themeMap = require(script.ThemeMap)
+	local consts = require(script.Consts)
 
 	local debugMode = false
 	local windowState = false
@@ -75,9 +76,18 @@ if runService:IsEdit() then
 		return widget
 	end
 
-	local function prepareDefault()
-		--ui.UserView.MainMenu.Visible = false
-		--ui.UserView.ModScriptView.Visible = true
+	local function showWelcome()
+		-- if first ever use, ignore
+		if not plugin:GetSetting(`{consts.DataId}000`) then
+			plugin:SetSetting(`{consts.DataId}ShownWelcome`, true)
+			return
+		end
+
+		if not plugin:GetSetting(`{consts.DataId}ShownWelcome`) then
+			plugin:SetSetting(`{consts.DataId}ShownWelcome`, true)
+			ui.NoticeView.Visible = true
+			ui.NoticeView.UpgradeMsg.Visible = true
+		end
 	end
 
 	button.Click:Connect(function()
@@ -105,5 +115,5 @@ if runService:IsEdit() then
 	updateTheme()
 	button:SetActive(windowState)
 	require(script.ButtonHandler)(plugin)
-	prepareDefault()
+	showWelcome()
 end

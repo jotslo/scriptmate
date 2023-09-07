@@ -25,7 +25,7 @@ local content do
 		content = require(mod)
 		mod:Destroy()
 	else
-		content = require(14438018012) ----/// update
+		content = require(14711202666)
 	end
 end
 
@@ -197,6 +197,11 @@ mainMenu.EpisodeSearch.SearchBox:GetPropertyChangedSignal("Text"):Connect(functi
 	local searchContent = text:lower():gsub("%s", "")
 
 	generatePage.SetupMenu(plugin, content, searchContent)
+end)
+
+ui.NoticeView.UpgradeMsg.OkButton.MouseButton1Click:Connect(function()
+	ui.NoticeView.Visible = false
+	ui.NoticeView.UpgradeMsg.Visible = false
 end)
 
 for _, button in questionView:GetChildren() do
