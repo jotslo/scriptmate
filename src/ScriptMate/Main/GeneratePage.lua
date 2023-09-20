@@ -119,11 +119,32 @@ local function generateSettings(setting, category)
 		Completed = false,
 		Setting = setting,
 		Scores = table.create(#category.Content, 0),
-		Sources = table.create(#category.Content, category.Template)
+		Sources = table.create(#category.Content, category.Template),
+		Version = consts.Version
 	}
 	
 	plugin:SetSetting(setting, newSettings)
 	return newSettings
+end
+
+local function getData(setting, category)
+	local data = plugin:GetSetting(setting)
+
+	if data then
+		-- if the data is outdated, backup in-case of corruption
+		if not data.Version or data.Version ~= consts.Version then
+			local backupKey = `bkpv{data.Version or "1.1"}`
+			plugin:SetSetting(backupKey .. setting, data)
+			print("Completed update & backup.")
+
+			-- when we next save, the data version will be new
+			data.Version = consts.Version
+		end
+
+		return data
+	end
+
+	return generateSettings(setting, category)
 end
 
 local function generateFinalScore(page, score)
@@ -204,8 +225,7 @@ function module.SetupMenu(localPlugin, newData, searchContent)
 	for _, category in data.Categories do
 		local setting = consts.DataId .. category.GridPlacement
 		
-		categoryData = plugin:GetSetting(setting)
-			or generateSettings(setting, category)
+		categoryData = getData(setting, category)
 
 		-- if this is a search, check whether the episode matches
 		if searchContent then
@@ -256,8 +276,7 @@ function module.SetupPage(localPlugin, identifier, handler)
 	scriptHandler = handler
 
 	category = module.GetCategory(identifier)
-	categoryData = plugin:GetSetting(setting)
-		or generateSettings(setting, category)
+	categoryData = getData(setting, category)
 	
 	-- if categories are missing from database,
 	-- add the missing values. prevents corruption
