@@ -6,6 +6,7 @@ local scriptView = ui.UserView.ModScriptView
 local httpView = ui.UserView.AccessHttpView
 local practiceView = ui.UserView.PracticeView
 local mainMenu = ui.UserView.MainMenu
+local fixView = ui.UserView.FixModView
 
 local exerciseView = practiceView.ExerciseView
 local quizView = practiceView.QuizView
@@ -49,6 +50,12 @@ local function openMainMenu()
 end
 
 scriptView.AllowButton.MouseButton1Click:Connect(openMainMenu)
+fixView.AllowButton.MouseButton1Click:Connect(openMainMenu)
+
+scriptView.ErrorButton.MouseButton1Click:Connect(function()
+	scriptView.Visible = false
+	fixView.Visible = true
+end)
 
 ui.NoticeView.NoTeamCreate.OkButton.MouseButton1Click:Connect(function()
 	ui.NoticeView.Visible = false
