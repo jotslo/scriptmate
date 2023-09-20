@@ -54,7 +54,11 @@ local map = {
 		[pages._Page] = color.MainText,
 		[pages._PageDone] = color.MainText,
 		[pages._PageViewingDone] = color.MainText
-	}
+	},
+	ScrollBarImageColor3 = {
+		[userView.MainMenu.EpisodeGrid] = color.MainText,
+		[userView.FixModView] = color.MainText
+	},
 }
 
 return map

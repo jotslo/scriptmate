@@ -135,15 +135,16 @@ local function getData(setting, category)
 		if not data.Version or data.Version ~= consts.Version then
 			local backupKey = `bkpv{data.Version or "1.1"}`
 			plugin:SetSetting(backupKey .. setting, data)
-			print("Completed update & backup.")
 
-			-- when we next save, the data version will be new
+			-- update the version and save
 			data.Version = consts.Version
+			plugin:SetSetting(setting, data)
 		end
 
 		return data
 	end
 
+	-- data doesn't exist. let's just generate it
 	return generateSettings(setting, category)
 end
 

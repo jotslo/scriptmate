@@ -79,6 +79,11 @@ local map = {
 		[menu.EpisodeSearch.SearchBox] = color.DimmedText,
 		[menu.MacroSearch.SearchBox] = color.DimmedText
 	},
+	ScrollBarImageColor3 = {
+		[menu.EpisodeGrid] = color.MainText,
+		[menu.MacroList] = color.MainText,
+		[userView.FixModView] = color.MainText
+	},
 }
 
 return map

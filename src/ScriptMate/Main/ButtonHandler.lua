@@ -46,6 +46,7 @@ local function openMainMenu()
 	scriptHandler.GenerateScript(plugin)
 	generatePage.SetupMenu(plugin, content)
 
+	fixView.Visible = false
 	scriptView.Visible = false
 	mainMenu.Visible = true
 end
