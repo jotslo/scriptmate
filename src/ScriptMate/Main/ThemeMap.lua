@@ -10,6 +10,7 @@ local scriptView = userView.ModScriptView
 local httpView = userView.AccessHttpView
 local menu = userView.MainMenu
 local practiceView = userView.PracticeView
+local fixView = userView.FixModView
 
 local exerciseView = practiceView.ExerciseView
 local quizView = practiceView.QuizView
@@ -52,6 +53,12 @@ local map = {
 		[menu.MacroSearch.SearchBox] = color.MainText,
 		[menu.EpisodeGrid.Upcoming] = color.MainText,
 		[menu.MacroAddButton] = color.MainText,
+
+		[fixView.MainLabel] = color.MainText,
+		[fixView.s1txt] = color.MainText,
+		[fixView.s2txt] = color.MainText,
+		[fixView.s3txt] = color.MainText,
+		[fixView.s4txt] = color.MainText
 	},
 	ImageColor3 = {
 		--[practiceView.HomeButton] = color.MainText,

@@ -9,6 +9,7 @@ local scriptView = userView.ModScriptView
 local httpView = userView.AccessHttpView
 local menu = userView.MainMenu
 local practiceView = userView.PracticeView
+local fixView = userView.FixModView
 
 local exerciseView = practiceView.ExerciseView
 local quizView = practiceView.QuizView
@@ -37,7 +38,13 @@ local map = {
 		[finalView.FailLabel] = color.MainText,
 		[finalView.PassLabel] = color.MainText,
 		[finalView.Title] = color.MainText,
-		[footer.Title] = color.MainText
+		[footer.Title] = color.MainText,
+
+		[fixView.MainLabel] = color.MainText,
+		[fixView.s1txt] = color.MainText,
+		[fixView.s2txt] = color.MainText,
+		[fixView.s3txt] = color.MainText,
+		[fixView.s4txt] = color.MainText
 	},
 	ImageColor3 = {
 		--[practiceView.HomeButton] = color.MainText,
