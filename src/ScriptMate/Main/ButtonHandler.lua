@@ -103,18 +103,34 @@ end)
 	ui.NoticeView.Visible = false
 end)]]
 
+local isTesting = false
 exerciseView.TestButton.MouseButton1Click:Connect(function()
 	if ui.NoticeView.Visible then return end
+	if isTesting then return end
+
+	isTesting = true
+
+	if page.HideScript then
+		scriptHandler.ToggleScript(false)
+	end
+
 	local success = scriptHandler.TestCode(page)
+
+	if page.HideScript then
+		scriptHandler.ToggleScript(true)
+	end
 	
 	if success then
 		page = generatePage.CompletedPage(page)
 	else
 		scriptHandler.SaveScript(true)
 	end
+
+	isTesting = false
 end)
 
 exerciseView.OkButton.MouseButton1Click:Connect(function()
+	if isTesting then return end
 	page = generatePage.CompletedPage(page, true)
 	
 	scriptHandler.HideScript()
@@ -122,6 +138,7 @@ end)
 
 practiceView.HomeButton.MouseButton1Click:Connect(function()
 	if ui.NoticeView.Visible then return end
+	if isTesting then return end
 
 	if page.Type == "Exercise" then
 		scriptHandler.SaveScript(true)
@@ -134,6 +151,7 @@ end)
 
 progress.LeftButton.MouseButton1Click:Connect(function()
 	if ui.NoticeView.Visible then return end
+	if isTesting then return end
 
 	if page.Type == "Exercise" then
 		scriptHandler.SaveScript(true)
@@ -144,6 +162,7 @@ end)
 
 progress.RightButton.MouseButton1Click:Connect(function()
 	if ui.NoticeView.Visible then return end
+	if isTesting then return end
 
 	if page.Type == "Exercise" then
 		scriptHandler.SaveScript(true)
@@ -154,6 +173,7 @@ end)
 
 finalView.MenuButton.MouseButton1Click:Connect(function()
 	if ui.NoticeView.Visible then return end
+	if isTesting then return end
 
 	practiceView.Visible = false
 	mainMenu.Visible = true

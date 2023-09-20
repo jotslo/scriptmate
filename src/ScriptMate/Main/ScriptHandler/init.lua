@@ -1,6 +1,7 @@
 local module = {}
 
 local httpService = game:GetService("HttpService")
+local scriptEditor = game:GetService("ScriptEditorService")
 local sourceHeader = require(script.SourceHeader)
 
 local execTest = script.ExecTest
@@ -59,13 +60,18 @@ function module.TestCode(page)
 	-- fixes annoying behaviour causing by modulescript caching
 	local fixedSource = sourceHeader .. "\n" .. scriptEnv.Source
 
-	if not runTest(preExecTest, page.ScriptValidator) then
-		return false
+	local test1 = runTest(preExecTest, page.ScriptValidator)
+	if not test1 then return false end
+
+	local test2 do
+		if page.Threaded then
+			test2 = runTest(execTest, `task.spawn(function() {fixedSource} end)\n{page.Validator}`)
+		else
+			test2 = runTest(execTest, fixedSource .. "\n" .. page.Validator)
+		end
 	end
 
-	if not runTest(execTest, fixedSource .. "\n" .. page.Validator) then
-		return false
-	end
+	if not test2 then return false end
 
 	print("ScriptMate - Code success!")
 	return true
@@ -104,7 +110,6 @@ function module.GenerateScript(localPlugin)
 	
 	for _, child in httpService:GetChildren() do
 		if child.Name == "ScriptMateEnv" and child ~= scriptEnv then
-			print("destroying!")
 			child:Destroy()
 		end
 	end
@@ -134,6 +139,36 @@ end
 function module.HideScript()
 	if scriptEnv.Parent then
 		scriptEnv:Destroy()
+	end
+end
+
+local originalCFrame = workspace.CurrentCamera.CFrame
+local originalCamType = Enum.CameraType.Fixed
+function module.ToggleScript(enabled)
+	-- if we're enabling the script, open the script editor
+	if enabled then
+		if scriptEnv then
+			scriptEditor:OpenScriptDocumentAsync(scriptEnv)
+		end
+
+		-- revert the camera to its original state
+		workspace.CurrentCamera.CFrame = originalCFrame
+		workspace.CurrentCamera.CameraType = originalCamType
+		workspace.CurrentCamera.CameraSubject = nil
+	
+	-- if we're disabling, temporarily close the script.
+	-- we don't delete it here because we want to keep the source.
+	-- this plugin was also written before closing scripts was possible, so is a bit outdated.
+	else
+		local doc = scriptEditor:FindScriptDocument(scriptEnv)
+
+		if doc then
+			doc:CloseAsync()
+
+			-- store camera details so we can revert after the upcoming test
+			originalCFrame = workspace.CurrentCamera.CFrame
+			originalCamType = workspace.CurrentCamera.CameraType
+		end
 	end
 end
 

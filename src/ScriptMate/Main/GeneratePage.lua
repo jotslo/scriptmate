@@ -203,12 +203,9 @@ function module.SetupMenu(localPlugin, newData, searchContent)
 	
 	for _, category in data.Categories do
 		local setting = consts.DataId .. category.GridPlacement
-		print(setting)
 		
 		categoryData = plugin:GetSetting(setting)
 			or generateSettings(setting, category)
-		
-		print(categoryData)
 
 		-- if this is a search, check whether the episode matches
 		if searchContent then
@@ -219,8 +216,6 @@ function module.SetupMenu(localPlugin, newData, searchContent)
 				continue
 			end
 		end
-
-		print("creating episode!")
 		
 		local episode = episodeGrid._Template:Clone()
 		episode.Title.Text = category.Title
