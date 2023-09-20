@@ -1,6 +1,23 @@
 {
     "Categories": [
         {
+            "Title": "Hey!",
+            "Subtitle": "Please Update",
+            "BackgroundImage": "http://www.roblox.com/asset/?id=14833802684",
+            "GridPlacement": "#",
+            "Template": "-- An important update is available!\n\n-- Head to PLUGINS -> Manage Plugins to update!",
+            "Content": [
+                {
+                    "Type": "Exercise",
+                    "Title": "Update available",
+                    "Description": "An important update is available! Head to PLUGINS -> Manage Plugins to update!",
+                    "Hint": "No hint.",
+                    "Validator": "return true",
+                    "ScriptValidator": "return true"
+                }
+            ]
+        },
+        {
             "Title": "Episode 0",
             "Subtitle": "Get Started",
             "BackgroundImage": "http://www.roblox.com/asset/?id=13727003716",
