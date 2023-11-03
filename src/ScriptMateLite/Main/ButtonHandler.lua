@@ -92,11 +92,19 @@ exerciseView.HintButton.MouseButton1Click:Connect(function()
 		.. "<font color='rgb(255,165,0)'>"
 		.. page.Hint .. "</font>"
 
-	exerciseView.HintButton.Visible = false
-	exerciseView.SolButton.Visible = true
+	--exerciseView.HintButton.Visible = false
+	--exerciseView.SolButton.Visible = true
 end)
 
 exerciseView.SolButton.MouseButton1Click:Connect(function()
+	ui.NoticeView.Visible = true
+	ui.NoticeView.NoSolution.Visible = true
+
+	ui.NoticeView.UpgradeMsg.Visible = false
+	ui.NoticeView.NoTeamCreate.Visible = false
+end)
+
+mainMenu.Toggle.MacroButton.MouseButton1Click:Connect(function()
 	ui.NoticeView.Visible = true
 	ui.NoticeView.NoSolution.Visible = true
 
