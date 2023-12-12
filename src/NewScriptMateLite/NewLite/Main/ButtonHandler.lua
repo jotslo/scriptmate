@@ -20,7 +20,7 @@ local scriptHandler = require(script.Parent.ScriptHandler)
 local macroHandler = require(script.Parent.MacroHandler)
 local consts = require(script.Parent.Consts)
 
-local content = require(2996434138)
+local content = require(script.Parent.Content)
 
 local requestAllowed = true
 local debugMode = true

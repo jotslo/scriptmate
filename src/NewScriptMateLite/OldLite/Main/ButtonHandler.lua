@@ -25,7 +25,7 @@ local content do
 		content = require(mod)
 		mod:Destroy()
 	else
-		content = require(14438018012)
+		content = require(script.Parent.Content)
 	end
 end
 
