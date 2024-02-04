@@ -79,7 +79,7 @@ end
 
 function module.RunScript(code)
 	local newScript = Instance.new("ModuleScript")
-	newScript.Source = `{code}\nreturn nil`
+	newScript.Source = `{code}\nreturn nil` --123
 	require(newScript)
 	newScript:Destroy()
 end
@@ -87,8 +87,12 @@ end
 function module.SetupEnv(source, newCatData, newPageNo, category)
 	pageNumber = newPageNo
 	categoryData = newCatData
-	scriptEnv.Source = source or ""
+	--scriptEnv.Source = source or "" --123
 	plugin:OpenScript(scriptEnv, #scriptEnv.Source:split("\n"))
+
+	scriptEditor:UpdateSourceAsync(scriptEnv, function(oldSource)
+		return source or oldSource
+	end)
 end
 
 function module.GenerateScript(localPlugin)
@@ -98,7 +102,7 @@ function module.GenerateScript(localPlugin)
 	
 	scriptEnv = Instance.new("Script")
 	scriptEnv.Name = "ScriptMateEnv"
-	scriptEnv.Source = "-- This script is used for ScriptMate exercises"
+	scriptEnv.Source = "-- This script is used for ScriptMate exercises" --123
 
 	if not httpService:FindFirstChild("SMPro") then
 		local pro = Instance.new("Folder")
@@ -174,7 +178,10 @@ end
 
 function module.ShowSolution(solution)
 	if scriptEnv then
-		scriptEnv.Source = solution
+		--scriptEnv.Source = solution --123
+		scriptEditor:UpdateSourceAsync(scriptEnv, function(oldSource)
+			return solution or oldSource
+		end)
 	end
 end
 
