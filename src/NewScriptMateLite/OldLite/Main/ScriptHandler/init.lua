@@ -1,6 +1,7 @@
 local module = {}
 
 local httpService = game:GetService("HttpService")
+local scriptEditor = game:GetService("ScriptEditorService")
 local sourceHeader = require(script.SourceHeader)
 
 local execTest = script.ExecTest
@@ -74,8 +75,12 @@ end
 function module.SetupEnv(source, newCatData, newPageNo, category)
 	pageNumber = newPageNo
 	categoryData = newCatData
-	scriptEnv.Source = source or ""
+	--scriptEnv.Source = source or ""
 	plugin:OpenScript(scriptEnv, #scriptEnv.Source:split("\n"))
+
+	scriptEditor:UpdateSourceAsync(scriptEnv, function(oldSource)
+		return source or oldSource
+	end)
 end
 
 function module.GenerateScript(localPlugin)

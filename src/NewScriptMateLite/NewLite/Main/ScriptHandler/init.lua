@@ -87,8 +87,12 @@ end
 function module.SetupEnv(source, newCatData, newPageNo, category)
 	pageNumber = newPageNo
 	categoryData = newCatData
-	scriptEnv.Source = source or ""
+	--scriptEnv.Source = source or ""
 	plugin:OpenScript(scriptEnv, #scriptEnv.Source:split("\n"))
+
+	scriptEditor:UpdateSourceAsync(scriptEnv, function(oldSource)
+		return source or oldSource
+	end)
 end
 
 function module.GenerateScript(localPlugin)
@@ -174,7 +178,10 @@ end
 
 function module.ShowSolution(solution)
 	if scriptEnv then
-		scriptEnv.Source = solution
+		--scriptEnv.Source = solution
+		scriptEditor:UpdateSourceAsync(scriptEnv, function(oldSource)
+			return solution or oldSource
+		end)
 	end
 end
 
